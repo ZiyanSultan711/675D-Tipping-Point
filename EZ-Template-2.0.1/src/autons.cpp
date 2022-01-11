@@ -1,10 +1,10 @@
 #include "main.h"
 
-const int DRIVE_SPEED = 110; // This is 110/127 (around 87% of max speed).  We don't suggest making this 127.
+const int DRIVE_SPEED = 118; // This is 110/127 (around 87% of max speed).  We don't suggest making this 127.
                              // If this is 127 and the robot tries to heading correct, it's only correcting by
                              // making one side slower.  When this is 87%, it's correcting by making one side
                              // faster and one side slower, giving better heading correction.
-const int TURN_SPEED  = 90;
+const int TURN_SPEED  = 95;
 const int SWING_SPEED = 90;
 
 
@@ -19,10 +19,10 @@ const int SWING_SPEED = 90;
 void default_constants() {
   chassis.set_slew_min_power(80, 80);
   chassis.set_slew_distance(7, 7);
-  chassis.set_pid_constants(&chassis.headingPID, 11, 0, 20, 0);
-  chassis.set_pid_constants(&chassis.forward_drivePID, 0.45, 0, 5, 0);
-  chassis.set_pid_constants(&chassis.backward_drivePID, 0.45, 0, 5, 0);
-  chassis.set_pid_constants(&chassis.turnPID, 5, 0.003, 35, 15);
+  chassis.set_pid_constants(&chassis.headingPID, 11, 0, 21, 0);
+  chassis.set_pid_constants(&chassis.forward_drivePID, 0.45, 0, 1.5, 0);
+  chassis.set_pid_constants(&chassis.backward_drivePID, 0.45, 0, 1.5, 0);
+  chassis.set_pid_constants(&chassis.turnPID, 5, 0.003, 30, 15);
   chassis.set_pid_constants(&chassis.swingPID, 7, 0, 45, 0);
 }
 
@@ -209,8 +209,8 @@ void tug (int attempts) {
   }
 }
 
-// If there is no interference, robot will drive forward and turn 90 degrees. 
-// If interfered, robot will drive forward and then attempt to drive backwards. 
+// If there is no interference, robot will drive forward and turn 90 degrees.
+// If interfered, robot will drive forward and then attempt to drive backwards.
 void interfered_example() {
  chassis.set_drive_pid(24, DRIVE_SPEED, true);
  chassis.wait_drive();
@@ -229,3 +229,75 @@ void interfered_example() {
 // . . .
 // Make your own autonomous functions here!
 // . . .
+
+void two_mogo_match_loads(){
+  pros::Task start_timer(check_for_time);
+
+  start_flipout();
+
+  chassis.set_drive_pid(40.5, DRIVE_SPEED); //fwd towards yellow mogo
+  chassis.wait_drive();
+
+  claw_close();
+
+  chassis.set_drive_pid(-41.5, DRIVE_SPEED); //drives bwd with mogo
+  chassis.wait_until(-20);
+  claw_open(); //drops off mogo in zone
+
+  chassis.wait_drive(); //continues driving bwd
+
+  chassis.set_turn_pid(-33.7, TURN_SPEED); //turns to face middle yellow mogo
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(54.5, DRIVE_SPEED); //drives fwd to middle yellow mogo
+  chassis.wait_until(40);
+  chassis.set_max_speed(80);
+  chassis.wait_drive();
+  wait(200);
+
+  claw_close(); //grabs middle yellow mogo
+
+  chassis.set_drive_pid(-39.5, DRIVE_SPEED); //drives bwd holding middle yellow mogo
+  chassis.wait_drive();
+
+  claw_open();
+
+  chassis.set_drive_pid(-21, DRIVE_SPEED); //drives bwd
+  chassis.wait_drive();
+
+  chassis.set_turn_pid(-145.5, TURN_SPEED); //turns to line up with alliance mogo
+  start_mogo_down(200); //mogo tilter begins to come down
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(-22, DRIVE_SPEED); //drives bwd into alliance mogo
+  chassis.wait_until(-6);
+  chassis.set_max_speed(70); //lowers speed when close to mogo in order to lock mogo properly
+
+  chassis.wait_drive();
+
+  start_lift_to(520, -140); //lift comes up for match loads
+  mogo_mid(200); //mogo is picked up
+
+  start_intake(550); //intake starts running
+
+  chassis.set_drive_pid(20, DRIVE_SPEED); //drives fwd to start match loads
+  chassis.wait_drive();
+
+  while(!is_time_up){ //match load process. continues until 12 seconds then exists loop
+    if(!is_time_up){
+      chassis.set_drive_pid(-10, 100);
+      chassis.wait_drive();
+      wait(300);
+    }
+    if(!is_time_up){
+      chassis.set_drive_pid(10, 100);
+      chassis.wait_drive();
+      wait(300);
+    }
+  }
+
+  stop_intake();
+  mogo_down(45);
+  mogo_is_down = true;
+  mogo_is_sensed = true;
+}

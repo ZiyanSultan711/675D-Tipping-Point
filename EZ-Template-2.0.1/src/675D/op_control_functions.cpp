@@ -14,7 +14,7 @@ bool clamp_current_state = true;
 
 int mogo_start_pos = 0;
 int mogo_mid_pos = 160;
-int mogo_bottom_pos = 480;
+int mogo_bottom_pos = 464;
 
 int conveyor_speed = 500; //380
 
@@ -169,10 +169,12 @@ void clamp_control(){
     if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L2)){
       if(clamp_current_state == true){
         piston_clamp.set_value(false);
+        master.rumble(".");
         clamp_current_state = false;
       }
       else if(clamp_current_state == false){
         piston_clamp.set_value(true);
+        master.rumble(".");
         clamp_current_state = true;
       }
     }

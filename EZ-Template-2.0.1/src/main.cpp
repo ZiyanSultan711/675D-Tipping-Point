@@ -60,6 +60,7 @@ void initialize() {
   chassis.toggle_modify_curve_with_controller(false); // Enables modifying the controller curve with buttons on the joysticks
   chassis.set_active_brake(0); // Sets the active brake kP. We recommend 0.1.
   chassis.set_curve_default(0, 1.3); // Defaults for curve. (Comment this line out if you have an SD card!)
+  chassis.set_joystick_threshold(4);
   default_constants(); // Set the drive to your own constants from autons.cpp!
 
   // These are already defaulted to these buttons, but you can change the left/right curve buttons here!
@@ -68,6 +69,7 @@ void initialize() {
 
   // Autonomous Selector using LLEMMU
   ez::as::auton_selector.add_autons({
+    Auton("2 Mogo Grab With Match Loads", two_mogo_match_loads),
     Auton("Example Drive\n\nDrive forward and come back.", drive_example),
     Auton("Example Turn\n\nTurn 3 times.", turn_example),
     Auton("Drive and Turn\n\nDrive forward, turn, come back. ", drive_and_turn),
