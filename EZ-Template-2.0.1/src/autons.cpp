@@ -20,8 +20,8 @@ void default_constants() {
   chassis.set_slew_min_power(80, 80);
   chassis.set_slew_distance(7, 7);
   chassis.set_pid_constants(&chassis.headingPID, 11, 0, 21, 0);
-  chassis.set_pid_constants(&chassis.forward_drivePID, 0.45, 0, 1.5, 0);
-  chassis.set_pid_constants(&chassis.backward_drivePID, 0.45, 0, 1.5, 0);
+  chassis.set_pid_constants(&chassis.forward_drivePID, 0.45, 0, 1.8, 0);
+  chassis.set_pid_constants(&chassis.backward_drivePID, 0.45, 0, 1.8, 0);
   chassis.set_pid_constants(&chassis.turnPID, 5, 0.003, 30, 15);
   chassis.set_pid_constants(&chassis.swingPID, 7, 0, 45, 0);
 }
@@ -249,15 +249,15 @@ void two_mogo_match_loads(){
   chassis.set_turn_pid(-33.7, TURN_SPEED); //turns to face middle yellow mogo
   chassis.wait_drive();
 
-  chassis.set_drive_pid(54.5, DRIVE_SPEED); //drives fwd to middle yellow mogo
-  chassis.wait_until(40);
-  chassis.set_max_speed(80);
+  chassis.set_drive_pid(54, 100); //drives fwd to middle yellow mogo
+  chassis.wait_until(30);
+  chassis.set_max_speed(70);
   chassis.wait_drive();
   wait(200);
 
   claw_close(); //grabs middle yellow mogo
 
-  chassis.set_drive_pid(-39.5, DRIVE_SPEED); //drives bwd holding middle yellow mogo
+  chassis.set_drive_pid(-39, DRIVE_SPEED); //drives bwd holding middle yellow mogo
   chassis.wait_drive();
 
   claw_open();
@@ -270,8 +270,7 @@ void two_mogo_match_loads(){
   chassis.wait_drive();
 
   chassis.set_drive_pid(-22, DRIVE_SPEED); //drives bwd into alliance mogo
-  chassis.wait_until(-6);
-  chassis.set_max_speed(70); //lowers speed when close to mogo in order to lock mogo properly
+  chassis.set_max_speed(50); //lowers speed when close to mogo in order to lock mogo properly
 
   chassis.wait_drive();
 

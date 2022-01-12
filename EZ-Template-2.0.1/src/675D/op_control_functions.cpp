@@ -13,9 +13,9 @@ bool lift_manual_control_enabled = true;
 bool clamp_current_state = true;
 
 int mogo_start_pos = 0;
-int mogo_mid_pos = 160;
-int mogo_bottom_pos = 464;
-
+int mogo_mid_pos = 210;
+int mogo_bottom_pos = 455;
+// SAM WAS HERE
 int conveyor_speed = 500; //380
 
 int lift_up_speed = 200;
@@ -42,12 +42,14 @@ void shift_key(){
 void toggle_drive_lock(){
   if(drive_lock_enabled){
     drive_lock_enabled=!drive_lock_enabled;
-    // chassis.set_drive_brake(MOTOR_BRAKE_COAST);
+    chassis.set_drive_brake(MOTOR_BRAKE_COAST);
+    chassis.set_active_brake(0.0);
     master.rumble("-");
   }
   else{
     drive_lock_enabled=!drive_lock_enabled;
-    // chassis.set_drive_brake(MOTOR_BRAKE_HOLD);
+    chassis.set_drive_brake(MOTOR_BRAKE_HOLD);
+    chassis.set_active_brake(0.1);
     master.rumble("..");
   }
 }
@@ -137,8 +139,8 @@ int lift_task(){
 
   master.rumble(".");
 
-  lift_l.move_absolute(0, 200);
-  lift_r.move_absolute(0, 200);
+  lift_l.move_absolute(-1, 200);
+  lift_r.move_absolute(-2, 200);
 
   printf("task called");
 

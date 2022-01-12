@@ -157,20 +157,7 @@ void opcontrol() {
     chassis.arcade_standard(ez::SPLIT); // Standard split arcade
 
     shift_key();
-    // drive_lock();
-
-    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y)){
-      if(drive_lock_enabled){
-        drive_lock_enabled=!drive_lock_enabled;
-        chassis.set_active_brake(0);
-        master.rumble("-");
-      }
-      else{
-        drive_lock_enabled=!drive_lock_enabled;
-        chassis.set_active_brake(0.11);
-        master.rumble("..");
-      }
-    }
+    drive_lock();
     mogo_control();
     lift_control();
     clamp_control();
