@@ -69,7 +69,6 @@ void initialize() {
 
   // Autonomous Selector using LLEMMU
   ez::as::auton_selector.add_autons({
-    Auton("prog skills", prog_skills),
     Auton("2 Mogo Grab With Match Loads", two_mogo_match_loads),
     Auton("Example Drive\n\nDrive forward and come back.", drive_example),
     Auton("Example Turn\n\nTurn 3 times.", turn_example),
