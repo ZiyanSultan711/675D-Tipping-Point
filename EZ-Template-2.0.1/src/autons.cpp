@@ -246,12 +246,17 @@ void two_mogo_match_loads(){
 
   chassis.wait_drive(); //continues driving bwd
 
-  chassis.set_turn_pid(-33.7, TURN_SPEED); //turns to face middle yellow mogo
+  chassis.set_turn_pid(-31.8, TURN_SPEED); //turns to face middle yellow mogo
   chassis.wait_drive();
+
+  start_lift_to(0, 100);
+
+  lift_l.set_brake_mode(MOTOR_BRAKE_HOLD);
+  lift_r.set_brake_mode(MOTOR_BRAKE_HOLD);
 
   chassis.set_drive_pid(54, 100); //drives fwd to middle yellow mogo
   chassis.wait_until(30);
-  chassis.set_max_speed(70);
+  chassis.set_max_speed(80);
   chassis.wait_drive();
   wait(200);
 
@@ -269,8 +274,7 @@ void two_mogo_match_loads(){
   start_mogo_down(200); //mogo tilter begins to come down
   chassis.wait_drive();
 
-  chassis.set_drive_pid(-22, DRIVE_SPEED); //drives bwd into alliance mogo
-  chassis.set_max_speed(50); //lowers speed when close to mogo in order to lock mogo properly
+  chassis.set_drive_pid(-22, 80); //drives bwd into alliance mogo
 
   chassis.wait_drive();
 

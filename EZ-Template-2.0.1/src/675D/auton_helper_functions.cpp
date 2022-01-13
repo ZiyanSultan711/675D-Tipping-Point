@@ -83,7 +83,7 @@ void start_flipout(){
 
 int check_for_time(){
   is_time_up = false;
-  wait(12800);
+  wait(13300);
   is_time_up = true;
   master.rumble("---");
   return 1;
