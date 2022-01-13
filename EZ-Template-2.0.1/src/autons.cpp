@@ -1,6 +1,6 @@
 #include "main.h"
 
-const int DRIVE_SPEED = 118; // This is 110/127 (around 87% of max speed).  We don't suggest making this 127.
+const int DRIVE_SPEED = 122; // This is 110/127 (around 87% of max speed).  We don't suggest making this 127.
                              // If this is 127 and the robot tries to heading correct, it's only correcting by
                              // making one side slower.  When this is 87%, it's correcting by making one side
                              // faster and one side slower, giving better heading correction.
@@ -235,12 +235,12 @@ void two_mogo_match_loads(){
 
   start_flipout();
 
-  chassis.set_drive_pid(40.5, DRIVE_SPEED); //fwd towards yellow mogo
+  chassis.set_drive_pid(40.1, DRIVE_SPEED); //fwd towards yellow mogo
   chassis.wait_drive();
 
   claw_close();
 
-  chassis.set_drive_pid(-41.5, DRIVE_SPEED); //drives bwd with mogo
+  chassis.set_drive_pid(-41.1, DRIVE_SPEED); //drives bwd with mogo
   chassis.wait_until(-20);
   claw_open(); //drops off mogo in zone
 
@@ -286,7 +286,7 @@ void two_mogo_match_loads(){
   chassis.set_drive_pid(20, DRIVE_SPEED); //drives fwd to start match loads
   chassis.wait_drive();
 
-  while(!is_time_up){ //match load process. continues until 12 seconds then exists loop
+  while(!is_time_up){ //match load process. continues until 13 seconds then exists loop
     if(!is_time_up){
       chassis.set_drive_pid(-10, 100);
       chassis.wait_drive();
@@ -303,4 +303,18 @@ void two_mogo_match_loads(){
   mogo_down(45);
   mogo_is_down = true;
   mogo_is_sensed = true;
+}
+
+void prog_skills(){
+  chassis.reset_gyro(-90);
+
+  mogo_down(200);
+
+  bwd(9, 50, true);
+
+  mogo_mid(200);
+
+  fwd(6, 60, true);
+
+  swing_left(20, SWING_SPEED);
 }

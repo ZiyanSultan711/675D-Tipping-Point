@@ -2,6 +2,26 @@
 
 bool is_time_up = false;
 
+void bwd(double distance, int speed, bool slew){
+  chassis.set_drive_pid(-distance, speed, slew);
+}
+
+void fwd(double distance, int speed, bool slew){
+  chassis.set_drive_pid(distance, speed, slew);
+}
+
+void point_turn(double angle, int speed){
+  chassis.set_turn_pid(angle, speed);
+}
+
+void swing_right(double angle, int speed){
+  chassis.set_swing_pid(ez::RIGHT_SWING, angle, speed);
+}
+
+void swing_left(double angle, int speed){
+  chassis.set_swing_pid(ez::LEFT_SWING, angle, speed);
+}
+
 void claw_open(){
   piston_clamp.set_value(true);
   clamp_current_state = true;
