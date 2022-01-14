@@ -1,7 +1,7 @@
 {
     "py/object": "pros.conductor.project.Project",
     "py/state": {
-        "project_name": "CODE GO BRRRR",
+        "project_name": "675D_South",
         "target": "v5",
         "templates": {
             "kernel": {
@@ -307,8 +307,8 @@
         },
         "upload_options": {
             "compress_bin": true,
-            "description": "jess makes the drive go brrr",
-            "remote_name": "CODE GO BRRR",
+            "description": "making code ez-pz",
+            "remote_name": "EZ-Template",
             "slot": 1
         }
     }

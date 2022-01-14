@@ -12,6 +12,3 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include "EZ-Template/drive/drive.hpp"
 #include "EZ-Template/sdcard.hpp"
 #include "EZ-Template/util.hpp"
-
-#include "675D/auton_helper_functions.hpp"
-#include "675D/op_control_functions.hpp"

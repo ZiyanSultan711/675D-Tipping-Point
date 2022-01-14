@@ -5,7 +5,7 @@
 Drive chassis (
   // Left Chassis Ports (negative port will reverse it!)
   //   the first port is the sensored port (when trackers are not used!)
-  {-11, -12}
+  {-13, -11}
 
   // Right Chassis Ports (negative port will reverse it!)
   //   the first port is the sensored port (when trackers are not used!)
@@ -156,7 +156,7 @@ void opcontrol() {
 
   while (true) {
 
-    chassis.arcade_standard(ez::SPLIT); // Standard split arcade
+    chassis.arcade_standard(ez::SPLIT);
 
     shift_key();
     drive_lock();
