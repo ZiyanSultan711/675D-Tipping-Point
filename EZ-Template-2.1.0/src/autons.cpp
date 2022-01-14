@@ -29,7 +29,7 @@ void default_constants() {
   chassis.set_pid_constants(&chassis.headingPID, 11, 0, 19, 0);
   chassis.set_pid_constants(&chassis.forward_drivePID, 0.45, 0, 1.8, 0);
   chassis.set_pid_constants(&chassis.backward_drivePID, 0.45, 0, 1.8, 0);
-  chassis.set_pid_constants(&chassis.turnPID, 5, 0.003, 30, 15);
+  chassis.set_pid_constants(&chassis.turnPID, 5, 0.003, 29, 15);
   chassis.set_pid_constants(&chassis.swingPID, 7, 0, 35, 0);
 }
 
@@ -315,6 +315,7 @@ void two_mogo_match_loads(){
   }
 
   stop_intake();
+  start_lift_to(0, 200);
   mogo_down(45);
   mogo_is_down = true;
   mogo_is_sensed = true;
@@ -322,51 +323,52 @@ void two_mogo_match_loads(){
 
 void prog_skills(){
   // robot starts plat up side, top right corner of 2nd tile, front facing the walls
+  chassis.set_angle(-180);
 
   start_mogo_down(200);
   wait(300);
 
-  chassis.set_turn_pid(45, 70); //turns to face alliance mogo
+  chassis.set_turn_pid(-135, 70); //turns to face alliance mogo
   claw_open();
   chassis.wait_drive();
 
-  chassis.set_drive_pid(-16, 60, true); //drives back into alliance goal
+  chassis.set_drive_pid(-16, 65, true); //drives back into alliance goal
   chassis.wait_drive();
 
   mogo_mid(200); //picks up goal
 
   start_intake(260);
 
-  chassis.set_swing_pid(ez::LEFT_SWING, 90, 80); //swings to face -90 degrees
+  chassis.set_swing_pid(ez::LEFT_SWING, -90, 80); //swings to face -90 degrees
   chassis.wait_drive();
 
-  chassis.set_drive_pid(11, 80, true); //drives forward to allign with yellow mogo
+  chassis.set_drive_pid(11, 88, true); //drives forward to allign with yellow mogo
   chassis.wait_drive();
 
-  chassis.set_turn_pid(181, 80); //turns to face yellow mogo
+  chassis.set_turn_pid(1, 90); //turns to face yellow mogo
   chassis.wait_drive();
 
-  chassis.set_drive_pid(32, 80, true); //drives into  yellow mogo
+  chassis.set_drive_pid(32, 95, true); //drives into  yellow mogo
   chassis.wait_drive();
 
   claw_close();
 
-  lift_to(120, 80);
+  lift_to(120, 120);
 
   stop_intake();
 
   chassis.set_drive_pid(23, 70); //drives fwd after grabbing mogo
   chassis.wait_drive();
 
-  chassis.set_turn_pid(136, 70); //turns to face platform
+  chassis.set_turn_pid(-44, 70); //turns to face platform
   chassis.wait_drive();
 
-  lift_to(600, 140);
+  lift_to(600, 150);
 
-  chassis.set_drive_pid(37, 70, true); //drives to the platform
+  chassis.set_drive_pid(37, 80, true); //drives to the platform
   chassis.wait_drive();
 
-  chassis.set_swing_pid(ez::LEFT_SWING, 148, 50);
+  chassis.set_swing_pid(ez::LEFT_SWING, -32, 50); //swings to adjust with platform
   chassis.wait_drive();
 
   lift_to(450, 140);
@@ -378,10 +380,10 @@ void prog_skills(){
 
   lift_to(600, 100);
 
-  chassis.set_swing_pid(ez::LEFT_SWING, 136, 50);
+  chassis.set_swing_pid(ez::LEFT_SWING, -44, 50); //undo swing to adjust back
   chassis.wait_drive();
 
-  chassis.set_turn_pid(90, 70); //turns to face -90
+  chassis.set_turn_pid(-90, 70); //turns to face -90
   chassis.wait_drive();
 
   chassis.set_drive_pid(-36, 70, true); //drives backwards towards wall
@@ -394,37 +396,37 @@ void prog_skills(){
   chassis.set_drive_pid(12, 70, true); //drives away from mogo
   chassis.wait_drive();
 
-  mogo_up();
+  start_mogo_up();
 
-  chassis.set_turn_pid(-90, 80); //spins to face mogo
+  chassis.set_turn_pid(90, 95); //spins to face mogo
   chassis.wait_drive();
 
-  chassis.set_drive_pid(12, 70, true); //drives into mogo
+  chassis.set_drive_pid(12, 90, true); //drives into mogo
   chassis.wait_drive();
 
   claw_close();
 
-  lift_to(120, 80);
+  lift_to(120, 130);
 
   chassis.set_drive_pid(-25, 70, true);
   chassis.wait_drive();
 
-  lift_to(600, 100);
+  lift_to(580, 100);
 
-  chassis.set_turn_pid(-227, 50);
+  chassis.set_turn_pid(-47, 50);
   chassis.wait_drive();
 
-  lift_to(530, 100);
+  lift_to(520, 100);
 
-  chassis.set_drive_pid(7, 70, true);
+  chassis.set_drive_pid(5, 70, true);
   chassis.wait_drive();
 
   claw_open();
 
-  chassis.set_drive_pid(-7, 70, true);
+  chassis.set_drive_pid(-5, 70, true);
   chassis.wait_drive();
 
-  chassis.set_turn_pid(-270, 50);
+  chassis.set_turn_pid(-90, 50);
   chassis.wait_drive();
 
   chassis.set_drive_pid(-20, 70, true);
@@ -432,7 +434,7 @@ void prog_skills(){
 
   lift_to(0, 200);
 
-  chassis.set_turn_pid(-228, 50);
+  chassis.set_turn_pid(-42, 50);
   chassis.wait_drive();
 
   chassis.set_drive_pid(12, 70, true);
@@ -441,10 +443,10 @@ void prog_skills(){
   claw_close();
   lift_to(120, 80);
 
-  chassis.set_drive_pid(-12, 70, true);
+  chassis.set_drive_pid(-8, 70, true);
   chassis.wait_drive();
 
-  chassis.set_turn_pid(-180, 50);
+  chassis.set_turn_pid(0, 50);
   chassis.wait_drive();
 
   chassis.set_drive_pid(-50, 90, true);
