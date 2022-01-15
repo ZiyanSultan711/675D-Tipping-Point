@@ -44,19 +44,19 @@ void start_mogo_up(){
 void mogo_down(int speed){
   mogo.move_absolute(mogo_bottom_pos, speed);
   while(mogo.get_position() < (mogo_bottom_pos - 3)){
-    wait(2);
+    wait(5);
   }
 }
 void mogo_mid(int speed){
   mogo.move_absolute(mogo_mid_pos, speed);
   while(mogo.get_position() > (mogo_mid_pos + 3)){
-    wait(2);
+    wait(5);
   }
 }
 void mogo_up(){
   mogo.move_absolute(mogo_start_pos, 200);
   while(mogo.get_position() > (mogo_start_pos + 3)){
-    wait(2);
+    wait(5);
   }
 }
 
@@ -68,8 +68,8 @@ void lift_to(int pos, int speed){
   lift_l.move_absolute(-pos, speed);
   lift_r.move_absolute(-pos, speed);
 
-  while(fabs(lift_l.get_position() - lift_l.get_target_position()) > 2){
-    wait(2);
+  while(fabs(lift_l.get_position() - lift_l.get_target_position()) > 5){
+    wait(5);
   }
 }
 
@@ -88,7 +88,7 @@ void intake_for(int deg, int speed){
   conveyor.move_absolute(deg, speed);
 
   while(fabs(conveyor.get_position() - conveyor.get_target_position()) > 2){
-    wait(2);
+    wait(5);
   }
 }
 

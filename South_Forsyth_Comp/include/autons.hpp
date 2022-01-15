@@ -18,3 +18,4 @@ void two_mogo_constants();
 
 void two_mogo_match_loads();
 void prog_skills();
+void left_auto();

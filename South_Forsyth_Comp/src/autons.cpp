@@ -256,7 +256,7 @@ void two_mogo_match_loads(){
   claw_close();
 
   chassis.set_drive_pid(-41.1, DRIVE_SPEED); //drives bwd with mogo
-  chassis.wait_until(-20);
+  chassis.wait_until(-19);
   claw_open(); //drops off mogo in zone
 
   chassis.wait_drive(); //continues driving bwd
@@ -269,11 +269,10 @@ void two_mogo_match_loads(){
   lift_l.set_brake_mode(MOTOR_BRAKE_HOLD);
   lift_r.set_brake_mode(MOTOR_BRAKE_HOLD);
 
-  chassis.set_drive_pid(54, 100); //drives fwd to middle yellow mogo
-  chassis.wait_until(30);
+  chassis.set_drive_pid(54, DRIVE_SPEED); //drives fwd to middle yellow mogo
+  chassis.wait_until(40);
   chassis.set_max_speed(80);
   chassis.wait_drive();
-  wait(200);
 
   claw_close(); //grabs middle yellow mogo
 
@@ -500,4 +499,34 @@ void prog_skills(){
 
   chassis.set_drive_pid(-10, 90, true);
   chassis.wait_drive();
+}
+
+void left_auto(){
+  start_flipout();
+
+  chassis.set_drive_pid(42.5, DRIVE_SPEED);
+  chassis.wait_drive();
+
+  claw_close();
+
+  chassis.set_drive_pid(-36, DRIVE_SPEED);
+  chassis.wait_drive();
+
+  claw_open();
+
+  chassis.set_swing_pid(ez::RIGHT_SWING, 25, 80);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(-12, DRIVE_SPEED);
+  chassis.wait_drive();
+
+  chassis.set_turn_pid(-110, 80);
+  chassis.wait_drive();
+
+  mogo_down(200);
+
+  chassis.set_drive_pid(-12, 60);
+  chassis.wait_drive();
+
+  mogo_mid(200);
 }
