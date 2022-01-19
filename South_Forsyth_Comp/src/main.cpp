@@ -69,9 +69,9 @@ void initialize() {
 
   // Autonomous Selector using LLEMMU
   ez::as::auton_selector.add_autons({
+    Auton("prog skills", prog_skills),
     Auton("2 Mogo Grab With Match Loads", two_mogo_match_loads),
     Auton("Left mogo with Match Loads", left_auto),
-    Auton("prog skills", prog_skills),
     Auton("Interference\n\nAfter driving forward, robot performs differently if interfered or not.", interfered_example),
   });
 
