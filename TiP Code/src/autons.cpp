@@ -334,7 +334,7 @@ void prog_skills(){
   start_mogo_down(200);
   chassis.wait_drive();
 
-  wait(300);
+  wait(200);
 
   chassis.set_drive_pid(-16, 60);
   chassis.wait_drive();
@@ -402,7 +402,7 @@ void prog_skills(){
 
   mogo_down(80);
 
-  chassis.set_drive_pid(12, 70, true); //drives away from mogo
+  chassis.set_drive_pid(12, 80, true); //drives away from mogo
   chassis.wait_drive();
 
   start_mogo_up();
@@ -410,7 +410,7 @@ void prog_skills(){
   chassis.set_turn_pid(90, 95); //spins to face mogo
   chassis.wait_drive();
 
-  chassis.set_drive_pid(14, 60, true); //drives into mogo
+  chassis.set_drive_pid(14, 63, true); //drives into mogo
   chassis.wait_drive();
 
   claw_close();
@@ -421,12 +421,12 @@ void prog_skills(){
   chassis.set_drive_pid(-27, 70, true);
   chassis.wait_drive();
 
-  lift_to(550, 100);
+  lift_to(530, 130);
 
-  chassis.set_turn_pid(-45, 55);
+  chassis.set_turn_pid(-45, 60);
   chassis.wait_drive();
 
-  lift_to(510, 100);
+  lift_to(480, 100);
 
   chassis.set_drive_pid(4, 70, true);
   chassis.wait_drive();
@@ -443,20 +443,20 @@ void prog_skills(){
   chassis.set_turn_pid(-90, 50);
   chassis.wait_drive();
 
-  chassis.set_drive_pid(-32, 70, true);
-  chassis.wait_drive();
+  chassis.set_drive_pid(-30, 70, true);
+  start_lift_to(0, 160);
 
-  lift_to(0, 200);
+  chassis.wait_drive();
 
   chassis.set_turn_pid(-49, 50);
   chassis.wait_drive();
 
-  chassis.set_drive_pid(21, 60, true);
+  chassis.set_drive_pid(23, 60, true);
   chassis.wait_drive();
 
   claw_close();
 
-  chassis.set_drive_pid(-6, 70, true);
+  chassis.set_drive_pid(-8, 70, true);
   chassis.wait_drive();
 
   lift_to(120, 80);
@@ -474,20 +474,24 @@ void prog_skills(){
   chassis.wait_drive();
 
   chassis.set_drive_pid(42, 90, true);
+  chassis.wait_until(30);
+  chassis.set_max_speed(60);
   chassis.wait_drive();
 
   chassis.set_turn_pid(-135, 50);
   chassis.wait_drive();
 
-  lift_to(600, 80);
+  lift_to(600, 110);
 
   chassis.set_drive_pid(31, 90, true);
+  chassis.wait_until(24);
+  chassis.set_max_speed(70);
   chassis.wait_drive();
 
-  lift_to(415, 80);
+  lift_to(405, 80);
 
   claw_open();
-  wait(600);
+  wait(870);
 
   // ----------------------------------------------------------------
   // alliance mogo scored on plat
@@ -535,7 +539,7 @@ void prog_skills(){
   chassis.set_drive_pid(16, 80);
   chassis.wait_drive();
 
-  chassis.set_turn_pid(180, 80);
+  chassis.set_turn_pid(184, 80);
   chassis.wait_drive();
 
   chassis.set_drive_pid(39, 80);
@@ -549,12 +553,13 @@ void prog_skills(){
   chassis.set_turn_pid(141, 80);
   chassis.wait_drive();
 
-  start_lift_to(550, 80);
+  start_lift_to(510, 80);
 
   chassis.set_drive_pid(42, 80);
   chassis.wait_drive();
 
   start_lift_to(450, 80);
+  wait(400);
   claw_open();
 
   chassis.set_drive_pid(-9, 80);

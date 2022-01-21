@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "Paul_Duke1",
+    "project_name": "675D TiP",
     "target": "v5",
     "templates": {
       "kernel": {
@@ -308,7 +308,7 @@
     "upload_options": {
       "compress_bin": true,
       "description": "making code ez-pz",
-      "remote_name": "FINALS",
+      "remote_name": "675D TiP",
       "slot": 1
     }
   }

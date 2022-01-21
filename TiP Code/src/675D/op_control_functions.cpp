@@ -9,14 +9,15 @@ bool mogo_is_down = false;
 bool mogo_is_sensed = false;
 
 bool lift_manual_control_enabled = true;
+bool lift_timed_out = false;
 
 bool clamp_current_state = true;
 
 int mogo_start_pos = 0;
 int mogo_mid_pos = 210;
 int mogo_bottom_pos = 455;
-// SAM WAS HERE
-int conveyor_speed = 500; //380
+
+int conveyor_speed = 510;
 
 int lift_up_speed = 200;
 int lift_down_speed = 195;
@@ -133,6 +134,12 @@ void lift_control_manual(){
   }
 }
 
+int lift_timeout(){
+  wait(2200);
+  lift_timed_out = true;
+  return 1;
+}
+
 int lift_task(){
   lift_manual_control_enabled = false;
   lift_task_running = true;
@@ -143,6 +150,7 @@ int lift_task(){
   lift_r.move_absolute(-2, 200);
 
   printf("task called");
+  pros::Task timeout(lift_timeout);
 
   while(lift_l.get_position() < -6){
     pros::delay(2);
