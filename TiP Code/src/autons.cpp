@@ -269,9 +269,9 @@ void two_mogo_match_loads(){
   lift_l.set_brake_mode(MOTOR_BRAKE_HOLD);
   lift_r.set_brake_mode(MOTOR_BRAKE_HOLD);
 
-  chassis.set_drive_pid(54, DRIVE_SPEED); //drives fwd to middle yellow mogo
+  chassis.set_drive_pid(53, 90); //drives fwd to middle yellow mogo
   chassis.wait_until(40);
-  chassis.set_max_speed(80);
+  chassis.set_max_speed(60);
   chassis.wait_drive();
 
   claw_close(); //grabs middle yellow mogo
@@ -279,20 +279,21 @@ void two_mogo_match_loads(){
   lift_l.set_brake_mode(MOTOR_BRAKE_COAST);
   lift_r.set_brake_mode(MOTOR_BRAKE_COAST);
 
-  chassis.set_drive_pid(-39, DRIVE_SPEED); //drives bwd holding middle yellow mogo
+  chassis.set_drive_pid(-38, DRIVE_SPEED); //drives bwd holding middle yellow mogo
   chassis.wait_drive();
 
   claw_open();
 
-  chassis.set_drive_pid(-21, DRIVE_SPEED); //drives bwd
+  chassis.set_drive_pid(-19, DRIVE_SPEED); //drives bwd
   chassis.wait_drive();
 
-  chassis.set_turn_pid(-145.5, TURN_SPEED); //turns to line up with alliance mogo
+  chassis.set_turn_pid(-135.5, TURN_SPEED); //turns to line up with alliance mogo
   start_mogo_down(200); //mogo tilter begins to come down
   chassis.wait_drive();
 
   chassis.set_drive_pid(-22, 80); //drives bwd into alliance mogo
-
+  chassis.wait_until(-14);
+  chassis.set_max_speed(60);
   chassis.wait_drive();
 
   start_lift_to(520, -140); //lift comes up for match loads
@@ -402,7 +403,7 @@ void prog_skills(){
 
   mogo_down(80);
 
-  chassis.set_drive_pid(12, 80, true); //drives away from mogo
+  chassis.set_drive_pid(12, 85, true); //drives away from mogo
   chassis.wait_drive();
 
   start_mogo_up();
@@ -410,7 +411,7 @@ void prog_skills(){
   chassis.set_turn_pid(90, 95); //spins to face mogo
   chassis.wait_drive();
 
-  chassis.set_drive_pid(14, 63, true); //drives into mogo
+  chassis.set_drive_pid(14, 65, true); //drives into mogo
   chassis.wait_drive();
 
   claw_close();
@@ -523,7 +524,7 @@ void prog_skills(){
   // ------------------------------------------------------------------
   // tall yellow scored in zone
 
-  chassis.set_drive_pid(-15, 70, true);
+  chassis.set_drive_pid(-12, 70, true);
   chassis.wait_drive();
 
   chassis.set_turn_pid(90, 80);
@@ -531,18 +532,18 @@ void prog_skills(){
 
   mogo_down(200);
 
-  chassis.set_drive_pid(-17, 60);
+  chassis.set_drive_pid(-18, 60);
   chassis.wait_drive();
 
   mogo_mid(200);
 
-  chassis.set_drive_pid(16, 80);
+  chassis.set_drive_pid(17, 80);
   chassis.wait_drive();
 
-  chassis.set_turn_pid(184, 80);
+  chassis.set_turn_pid(188, 80);
   chassis.wait_drive();
 
-  chassis.set_drive_pid(39, 80);
+  chassis.set_drive_pid(41, 80);
   chassis.wait_until(23);
   claw_close();
 
@@ -553,60 +554,60 @@ void prog_skills(){
   chassis.set_turn_pid(141, 80);
   chassis.wait_drive();
 
-  start_lift_to(510, 80);
+  start_lift_to(490, 80);
 
   chassis.set_drive_pid(42, 80);
   chassis.wait_drive();
 
   start_lift_to(450, 80);
-  wait(400);
+  wait(500);
   claw_open();
 
-  chassis.set_drive_pid(-9, 80);
+  chassis.set_drive_pid(-9, 100);
   chassis.wait_drive();
 
-  chassis.set_turn_pid(90, 70);
+  chassis.set_turn_pid(90, 100);
   chassis.wait_drive();
 
-  chassis.set_drive_pid(-30, 80);
+  chassis.set_drive_pid(-30, 100);
   chassis.wait_drive();
 
-  chassis.set_turn_pid(180, 70);
+  chassis.set_turn_pid(180, 100);
   chassis.wait_drive();
 
   start_intake(500);
 
-  chassis.set_drive_pid(20, 80, true);
+  chassis.set_drive_pid(20, 100, true);
   chassis.wait_drive();
 
   wait(200);
 
-  chassis.set_drive_pid(-12, 80, true);
+  chassis.set_drive_pid(-12, 100, true);
   chassis.wait_drive();
 
   wait(200);
 
-  chassis.set_drive_pid(12, 80, true);
+  chassis.set_drive_pid(12, 100, true);
   chassis.wait_drive();
 
   wait(200);
 
-  chassis.set_drive_pid(-12, 80, true);
+  chassis.set_drive_pid(-12, 100, true);
   chassis.wait_drive();
 
   wait(200);
 
-  chassis.set_drive_pid(12, 80, true);
+  chassis.set_drive_pid(12, 100, true);
   chassis.wait_drive();
 
   wait(200);
 
-  chassis.set_drive_pid(-12, 80, true);
+  chassis.set_drive_pid(-12, 100, true);
   chassis.wait_drive();
 
   wait(200);
 
-  chassis.set_drive_pid(12, 80, true);
+  chassis.set_drive_pid(12, 100, true);
   chassis.wait_drive();
 
   stop_intake();
