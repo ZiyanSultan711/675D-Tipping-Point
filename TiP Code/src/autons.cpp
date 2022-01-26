@@ -288,7 +288,7 @@ void two_mogo_match_loads(){
   chassis.wait_drive();
 
   chassis.set_turn_pid(-135.5, TURN_SPEED); //turns to line up with alliance mogo
-  start_mogo_down(200); //mogo tilter begins to come down
+  //start_mogo_down(200); //mogo tilter begins to come down
   chassis.wait_drive();
 
   chassis.set_drive_pid(-22, 80); //drives bwd into alliance mogo
@@ -297,7 +297,7 @@ void two_mogo_match_loads(){
   chassis.wait_drive();
 
   start_lift_to(520, -140); //lift comes up for match loads
-  mogo_mid(200); //mogo is picked up
+  //mogo_mid(200); //mogo is picked up
 
   start_intake(550); //intake starts running
 
@@ -319,9 +319,9 @@ void two_mogo_match_loads(){
 
   stop_intake();
   start_lift_to(0, 200);
-  mogo_down(45);
+  //mogo_down(45);
   mogo_is_down = true;
-  mogo_is_sensed = true;
+  //mogo_is_sensed = true;
 }
 
 void prog_skills(){
@@ -332,7 +332,7 @@ void prog_skills(){
 
   chassis.set_turn_pid(-90, 70); //turns to face alliance mogo
   claw_open();
-  start_mogo_down(200);
+  //start_mogo_down(200);
   chassis.wait_drive();
 
   wait(200);
@@ -340,7 +340,7 @@ void prog_skills(){
   chassis.set_drive_pid(-16, 60);
   chassis.wait_drive();
 
-  mogo_mid(200);
+  //mogo_mid(200);
 
   chassis.set_drive_pid(16, 80);
   chassis.wait_drive();
@@ -401,12 +401,12 @@ void prog_skills(){
 
   start_lift_to(0, 200);
 
-  mogo_down(80);
+  //mogo_down(80);
 
   chassis.set_drive_pid(12, 85, true); //drives away from mogo
   chassis.wait_drive();
 
-  start_mogo_up();
+  //start_mogo_up();
 
   chassis.set_turn_pid(90, 95); //spins to face mogo
   chassis.wait_drive();
@@ -530,12 +530,12 @@ void prog_skills(){
   chassis.set_turn_pid(90, 80);
   chassis.wait_drive();
 
-  mogo_down(200);
+  //mogo_down(200);
 
   chassis.set_drive_pid(-18, 60);
   chassis.wait_drive();
 
-  mogo_mid(200);
+  //mogo_mid(200);
 
   chassis.set_drive_pid(17, 80);
   chassis.wait_drive();
@@ -611,7 +611,7 @@ void prog_skills(){
   chassis.wait_drive();
 
   stop_intake();
-  mogo_down(80);
+  //mogo_down(80);
 
 
 }
@@ -638,10 +638,10 @@ void left_auto(){
   chassis.set_turn_pid(-110, 80);
   chassis.wait_drive();
 
-  mogo_down(200);
+  //mogo_down(200);
 
   chassis.set_drive_pid(-12, 60);
   chassis.wait_drive();
 
-  mogo_mid(200);
+  //mogo_mid(200);
 }

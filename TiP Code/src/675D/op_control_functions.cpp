@@ -6,21 +6,17 @@ bool double_shift = false;
 bool drive_lock_enabled = false;
 
 bool mogo_is_down = false;
-bool mogo_is_sensed = false;
+bool mogo_clamp_closed = false;
 
 bool lift_manual_control_enabled = true;
 bool lift_timed_out = false;
 
 bool clamp_current_state = true;
-//old mogo tilter code
-int mogo_start_pos = 0;
-int mogo_mid_pos = 210;
-int mogo_bottom_pos = 455;
 
 int conveyor_speed = 510;
 
 int lift_up_speed = 200;
-int lift_down_speed = 195;
+int lift_down_speed = 200;
 int lift_up_speed_slowed = 100;
 int lift_down_speed_slowed = 100;
 bool lift_task_running = false;
@@ -61,40 +57,15 @@ void drive_lock(){
   }
 }
 
-int mogo_task(){
-  if(mogo_is_down){
-    if(mogo_is_sensed){
-      mogo.move_absolute(mogo_mid_pos, 80);
-    }
-    else{
-      mogo.move_absolute(mogo_start_pos, 100);
-    }
-    mogo_is_down = false;
-  }
-  else if(!mogo_is_down){
-    if(mogo_is_sensed){
-      mogo.move_absolute(mogo_bottom_pos, 40);
-    }
-    else{
-      mogo.move_absolute(mogo_bottom_pos, 100);
-      mogo_is_sensed = true;
-    }
-
-    mogo_is_down = true;
-  }
-
-  master.rumble(".");
-  return 1;
-}
 
 void mogo_control(){
   if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)){
-    pros::Task mogo_control_task(mogo_task);
-  }
-  else if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT)){
-    mogo_is_down = true;
-    mogo_is_sensed = false;
-    pros::Task mogo_control_task(mogo_task);
+    if(mogo_is_down == true){
+      tilter_up();
+    }
+    else{
+      tilter_down();
+    }
   }
 }
 

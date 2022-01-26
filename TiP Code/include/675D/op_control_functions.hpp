@@ -5,15 +5,11 @@ extern bool shift;
 extern bool drive_lock_enabled;
 
 extern bool mogo_is_down;
-extern bool mogo_is_sensed;
+extern bool mogo_clamp_closed;
 
 extern bool lift_manual_control_enabled;
 
 extern bool clamp_current_state;
-
-extern int mogo_start_pos;
-extern int mogo_mid_pos;
-extern int mogo_bottom_pos;
 
 extern int conveyor_speed;
 

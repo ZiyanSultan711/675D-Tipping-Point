@@ -2,50 +2,10 @@
 
 void claw_open();
 void claw_close();
-void bwd(double distance, int speed, bool slew);
 
-void fwd(double distance, int speed, bool slew);
+void tilter_down();
 
-void point_turn(double angle, int speed);
-
-void swing_right(double angle, int speed);
-
-void swing_left(double angle, int speed);
-////
-// moves mogo to bottom position
-// NON-BLOCKING
-////
-void start_mogo_down(int speed);
-
-////
-// moves mogo to middle position
-// NON-BLOCKING
-////
-void start_mogo_mid(int speed);
-
-////
-// moves mogo to starting position
-// NON-BLOCKING
-////
-void start_mogo_up();
-
-////
-// moves mogo to bottom position
-// BLOCKING
-////
-void mogo_down(int speed);
-
-////
-// moves mogo to middle position
-// BLOCKING
-////
-void mogo_mid(int speed);
-
-////
-// moves mogo to starting position
-// BLOCKING
-////
-void mogo_up();
+void tilter_up();
 
 ////
 // moves lift to the specified position at the specified speed
