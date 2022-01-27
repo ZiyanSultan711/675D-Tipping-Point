@@ -338,7 +338,7 @@ void prog_skills(){
   chassis.set_drive_pid(17.4, 95);
   chassis.wait_drive();
 
-  chassis.set_turn_pid(-90, 80); //turns to face alliance mogo
+  chassis.set_turn_pid(-90, 80);
   start_claw_open();
 
   chassis.wait_drive();
@@ -360,6 +360,11 @@ void prog_skills(){
   claw_close();
   wait(400);
 
+
+
+  // first yellow picked up
+
+
   start_lift_to(120, 120);
 
   chassis.set_drive_pid(23, 70); //drives fwd after grabbing mogo
@@ -376,6 +381,9 @@ void prog_skills(){
   chassis.set_swing_pid(ez::LEFT_SWING, -32, 50); //swings to adjust with platform
   chassis.wait_drive();
 
+  chassis.set_drive_pid(2, 80, true); //drives to the platform
+  chassis.wait_drive();
+
   lift_to(415, 140);
 
   wait(400);
@@ -388,7 +396,7 @@ void prog_skills(){
 
   lift_to(450, 80);
 
-  chassis.set_drive_pid(-21, 80, true);
+  chassis.set_drive_pid(-20, 80, true);
   chassis.wait_until(-6);
   start_lift_to(0, 150);
   tilter_down();
@@ -410,7 +418,7 @@ void prog_skills(){
 
   lift_to(480, 130);
 
-  chassis.set_turn_pid(-16, 65);
+  chassis.set_turn_pid(-17, 65);
   chassis.wait_drive();
 
   chassis.set_drive_pid(17, 70, true);
@@ -422,7 +430,6 @@ void prog_skills(){
   // --------------------------------------------------------------
   // alliance mogo scored on plat
 
-
   chassis.set_turn_pid(-90, 100);
   chassis.wait_drive();
 
@@ -431,7 +438,7 @@ void prog_skills(){
 
   chassis.wait_drive();
 
-  chassis.set_turn_pid(-39, 85);
+  chassis.set_turn_pid(-41, 85);
   chassis.wait_drive();
 
   chassis.set_drive_pid(21, 60, true);
@@ -439,18 +446,25 @@ void prog_skills(){
 
   claw_close();
 
+
+  // grabs alliance goal near platform
+
+
   chassis.set_drive_pid(-3, 70, true);
   chassis.wait_drive();
 
   lift_to(120, 80);
 
-  chassis.set_swing_pid(ez::RIGHT_SWING, 9, 60);
+  chassis.set_swing_pid(ez::RIGHT_SWING, 9, 70);
   chassis.wait_drive();
 
   chassis.set_drive_pid(-60, 100, true);
   chassis.wait_drive();
 
-  chassis.set_turn_pid(-140, 50);
+  chassis.set_turn_pid(-140, 70);
+  chassis.wait_until(-100);
+  chassis.set_max_speed(60);
+
   chassis.wait_drive();
   //
   lift_to(600, 110);
@@ -470,13 +484,13 @@ void prog_skills(){
 
   lift_to(500, 80);
 
-  chassis.set_drive_pid(-19, 90, true);
+  chassis.set_drive_pid(-20, 90, true);
 
   chassis.wait_until(-16);
   start_lift_to(0, 140);
   chassis.wait_drive();
 
-  chassis.set_turn_pid(-45, 90);
+  chassis.set_turn_pid(-44, 90);
   chassis.wait_drive();
 
   chassis.set_drive_pid(100, 90, true);
@@ -501,12 +515,16 @@ void prog_skills(){
   chassis.set_turn_pid(90, 80);
   chassis.wait_drive();
 
-  chassis.set_drive_pid(-13, 60);
+  chassis.set_drive_pid(-15, 60);
   chassis.wait_drive();
 
   tilter_up();
 
-  chassis.set_drive_pid(16, 80);
+
+  // alliance goal picked up
+
+
+  chassis.set_drive_pid(11, 80);
   chassis.wait_drive();
 
   chassis.set_turn_pid(180, 80);
@@ -518,31 +536,56 @@ void prog_skills(){
 
   start_lift_to(140, 80);
 
+
+  // yellow goal picked up
+
+
   chassis.wait_drive();
-  //
-  // chassis.set_turn_pid(141, 80);
-  // chassis.wait_drive();
-  //
-  // start_lift_to(490, 80);
-  //
-  // chassis.set_drive_pid(42, 80);
-  // chassis.wait_drive();
-  //
-  // start_lift_to(450, 80);
-  // wait(500);
-  // claw_open();
-  //
-  // chassis.set_drive_pid(-9, 100);
-  // chassis.wait_drive();
-  //
-  // chassis.set_turn_pid(90, 100);
-  // chassis.wait_drive();
-  //
-  // chassis.set_drive_pid(-30, 100);
-  // chassis.wait_drive();
-  //
-  // chassis.set_turn_pid(180, 100);
-  // chassis.wait_drive();
+
+  chassis.set_turn_pid(144, 80);
+  chassis.wait_drive();
+
+  start_lift_to(490, 80);
+
+  chassis.set_drive_pid(45, 80);
+  chassis.wait_until(30);
+  chassis.set_max_speed(60);
+
+  chassis.wait_drive();
+
+  start_lift_to(450, 80);
+  wait(500);
+  claw_open();
+
+  chassis.set_drive_pid(-21, 80, true);
+  chassis.wait_until(-6);
+  start_lift_to(0, 150);
+  tilter_down();
+
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(4, 85, true); //drives away from mogo
+  chassis.wait_drive();
+
+  chassis.set_turn_pid(-39, 100); //spins to face mogo
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(8, 65, true); //drives into mogo
+  chassis.wait_drive();
+
+  claw_close();
+  wait(200);
+
+  lift_to(480, 130);
+
+  chassis.set_turn_pid(140, 50);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(20, 100);
+  chassis.wait_drive();
+
+  claw_open();
+
   //
   // start_intake(500);
   //
@@ -588,17 +631,17 @@ void prog_skills(){
 void left_auto(){
   start_flipout();
 
-  chassis.set_drive_pid(42.5, DRIVE_SPEED);
+  chassis.set_drive_pid(42.5, 127);
   chassis.wait_drive();
 
-  claw_close();
+  start_claw_close();
 
-  chassis.set_drive_pid(-36, DRIVE_SPEED);
+  chassis.set_drive_pid(-36, 127);
   chassis.wait_drive();
 
   claw_open();
 
-  chassis.set_swing_pid(ez::RIGHT_SWING, 25, 80);
+  chassis.set_swing_pid(ez::RIGHT_SWING, -25, 80);
   chassis.wait_drive();
 
   chassis.set_drive_pid(-12, DRIVE_SPEED);
