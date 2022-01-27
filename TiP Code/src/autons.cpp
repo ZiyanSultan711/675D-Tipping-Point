@@ -246,22 +246,22 @@ void interfered_example() {
 // . . .
 
 void two_mogo_match_loads(){
-  pros::Task start_timer(check_for_time);
+  //pros::Task start_timer(check_for_time);
 
   start_flipout();
 
-  chassis.set_drive_pid(40.1, DRIVE_SPEED); //fwd towards yellow mogo
+  chassis.set_drive_pid(40.1, 127); //fwd towards yellow mogo
   chassis.wait_drive();
 
   claw_close();
 
-  chassis.set_drive_pid(-41.1, DRIVE_SPEED); //drives bwd with mogo
+  chassis.set_drive_pid(-41.1, 127); //drives bwd with mogo
   chassis.wait_until(-19);
   claw_open(); //drops off mogo in zone
 
   chassis.wait_drive(); //continues driving bwd
 
-  chassis.set_turn_pid(-31.5, TURN_SPEED); //turns to face middle yellow mogo
+  chassis.set_turn_pid(-32, TURN_SPEED); //turns to face middle yellow mogo
   chassis.wait_drive();
 
   start_lift_to(0, 100);
@@ -270,7 +270,7 @@ void two_mogo_match_loads(){
   lift_r.set_brake_mode(MOTOR_BRAKE_HOLD);
 
   chassis.set_drive_pid(53, 90); //drives fwd to middle yellow mogo
-  chassis.wait_until(40);
+  chassis.wait_until(30);
   chassis.set_max_speed(60);
   chassis.wait_drive();
 
@@ -291,37 +291,38 @@ void two_mogo_match_loads(){
   //start_mogo_down(200); //mogo tilter begins to come down
   chassis.wait_drive();
 
-  chassis.set_drive_pid(-22, 80); //drives bwd into alliance mogo
-  chassis.wait_until(-14);
-  chassis.set_max_speed(60);
+  tilter_down();
+
+  chassis.set_drive_pid(-22, 60); //drives bwd into alliance mogo
   chassis.wait_drive();
 
   start_lift_to(520, -140); //lift comes up for match loads
+  tilter_up();
   //mogo_mid(200); //mogo is picked up
 
   start_intake(550); //intake starts running
-
+  //
   chassis.set_drive_pid(20, DRIVE_SPEED); //drives fwd to start match loads
   chassis.wait_drive();
-
-  while(!is_time_up){ //match load process. continues until 13 seconds then exists loop
-    if(!is_time_up){
-      chassis.set_drive_pid(-10, 100);
-      chassis.wait_drive();
-      wait(300);
-    }
-    if(!is_time_up){
-      chassis.set_drive_pid(10, 100);
-      chassis.wait_drive();
-      wait(300);
-    }
-  }
-
+  //
+  // while(!is_time_up){ //match load process. continues until 13 seconds then exists loop
+  //   if(!is_time_up){
+  //     chassis.set_drive_pid(-10, 100);
+  //     chassis.wait_drive();
+  //     wait(300);
+  //   }
+  //   if(!is_time_up){
+  //     chassis.set_drive_pid(10, 100);
+  //     chassis.wait_drive();
+      wait(1000);
+  //   }
+  // }
+  //
   stop_intake();
   start_lift_to(0, 200);
-  //mogo_down(45);
-  mogo_is_down = true;
-  //mogo_is_sensed = true;
+  // //mogo_down(45);
+  // mogo_is_down = true;
+  // //mogo_is_sensed = true;
 }
 
 void prog_skills(){

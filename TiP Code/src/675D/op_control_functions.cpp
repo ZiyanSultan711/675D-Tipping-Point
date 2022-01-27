@@ -106,7 +106,7 @@ void lift_control_manual(){
 }
 
 int lift_timeout(){
-  wait(2200);
+  wait(2000);
   lift_timed_out = true;
   return 1;
 }

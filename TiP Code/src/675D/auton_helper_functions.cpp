@@ -16,7 +16,7 @@ int td_task(){
   tilter_r.set_value(true);
   mogo_is_down = true;
 
-  wait(1000);
+  wait(500);
   tilter_clamp.set_value(false);
   mogo_clamp_closed = false;
 
@@ -26,7 +26,7 @@ int td_task(){
 int tu_task(){
   tilter_clamp.set_value(true);
   mogo_clamp_closed = true;
-  wait(400);
+  
 
   tilter_l.set_value(false);
   tilter_r.set_value(false);
@@ -81,7 +81,7 @@ void wait(int time){
 
 void start_flipout(){
   claw_open();
-  start_intake_for(-320, 600);
+  tilter_down();
 }
 
 int check_for_time(){
