@@ -118,7 +118,7 @@ int lift_task(){
   master.rumble(".");
 
   lift_l.move_absolute(-1, 200);
-  lift_r.move_absolute(-2, 200);
+  lift_r.move_absolute(-1, 200);
 
   printf("task called");
   pros::Task timeout(lift_timeout);

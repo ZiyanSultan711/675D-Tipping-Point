@@ -6,9 +6,30 @@ void claw_open(){
   piston_clamp.set_value(true);
   clamp_current_state = true;
 }
+
 void claw_close(){
   piston_clamp.set_value(false);
   clamp_current_state = false;
+}
+
+int co_task(){
+  claw_open();
+
+  return 1;
+}
+
+int cc_task(){
+  claw_close();
+
+  return 1;
+}
+
+void start_claw_open(){
+  pros::Task co(co_task);
+}
+
+void start_claw_close(){
+  pros::Task cc(cc_task);
 }
 
 int td_task(){
@@ -26,7 +47,7 @@ int td_task(){
 int tu_task(){
   tilter_clamp.set_value(true);
   mogo_clamp_closed = true;
-  
+
 
   tilter_l.set_value(false);
   tilter_r.set_value(false);

@@ -3,6 +3,9 @@
 void claw_open();
 void claw_close();
 
+void start_claw_open();
+void start_claw_close();
+
 void tilter_down();
 
 void tilter_up();
