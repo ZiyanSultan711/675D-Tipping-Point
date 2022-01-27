@@ -246,7 +246,7 @@ void interfered_example() {
 // . . .
 
 void two_mogo_match_loads(){
-  //pros::Task start_timer(check_for_time);
+  pros::Task start_timer(check_for_time);
 
   start_flipout();
 
