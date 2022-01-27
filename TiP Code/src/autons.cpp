@@ -259,6 +259,7 @@ void two_mogo_match_loads(){
   chassis.wait_drive();
 
   start_claw_close();
+  wait(100);
   start_lift_to(20, 50);
 
   chassis.set_drive_pid(-40, 127); //drives bwd with mogo
@@ -267,7 +268,7 @@ void two_mogo_match_loads(){
 
   chassis.wait_drive(); //continues driving bwd
 
-  chassis.set_turn_pid(-35, TURN_SPEED); //turns to face middle yellow mogo
+  chassis.set_turn_pid(-34, TURN_SPEED); //turns to face middle yellow mogo
   chassis.wait_drive();
 
   start_lift_to(0, 100);
@@ -275,9 +276,9 @@ void two_mogo_match_loads(){
   lift_l.set_brake_mode(MOTOR_BRAKE_HOLD);
   lift_r.set_brake_mode(MOTOR_BRAKE_HOLD);
 
-  chassis.set_drive_pid(53, 90); //drives fwd to middle yellow mogo
-  chassis.wait_until(30);
-  chassis.set_max_speed(60);
+  chassis.set_drive_pid(52, DRIVE_SPEED); //drives fwd to middle yellow mogo
+  chassis.wait_until(40);
+  chassis.set_max_speed(80);
   chassis.wait_drive();
 
   claw_close(); //grabs middle yellow mogo
@@ -286,7 +287,7 @@ void two_mogo_match_loads(){
   lift_l.set_brake_mode(MOTOR_BRAKE_COAST);
   lift_r.set_brake_mode(MOTOR_BRAKE_COAST);
 
-  chassis.set_drive_pid(-35, DRIVE_SPEED); //drives bwd holding middle yellow mogo
+  chassis.set_drive_pid(-34, DRIVE_SPEED); //drives bwd holding middle yellow mogo
   chassis.wait_drive();
 
   claw_open();
@@ -294,7 +295,7 @@ void two_mogo_match_loads(){
   chassis.set_drive_pid(-19, DRIVE_SPEED); //drives bwd
   chassis.wait_drive();
 
-  chassis.set_turn_pid(-135.5, TURN_SPEED); //turns to line up with alliance mogo
+  chassis.set_turn_pid(-130, TURN_SPEED); //turns to line up with alliance mogo
   chassis.wait_until(-90);
   tilter_down();
 
@@ -307,6 +308,7 @@ void two_mogo_match_loads(){
 
   start_lift_to(520, -140); //lift comes up for match loads
   tilter_up();
+  wait(200);
 
   start_intake(550); //intake starts running
 
@@ -317,18 +319,20 @@ void two_mogo_match_loads(){
     if(!is_time_up){
       chassis.set_drive_pid(-10, 100);
       chassis.wait_drive();
-      wait(300);
+      wait(200);
     }
     if(!is_time_up){
       chassis.set_drive_pid(10, 100);
       chassis.wait_drive();
-      wait(700);
     }
   }
 
+  chassis.set_drive_pid(3, 100);
   stop_intake();
   start_lift_to(0, 200);
   tilter_down();
+
+  chassis.wait_drive();
 }
 
 void prog_skills(){
