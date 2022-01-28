@@ -373,7 +373,7 @@ void prog_skills(){
   // ------------------------------------------------------------------
   // tall yellow scored in zone (140)
 
-  chassis.set_drive_pid(-17.5, 70, true);
+  chassis.set_drive_pid(-16, 70, true);
   chassis.wait_drive();
 
   chassis.set_turn_pid(90, 80);
@@ -406,7 +406,7 @@ void prog_skills(){
 
   chassis.wait_drive();
 
-  chassis.set_turn_pid(144, 80);
+  chassis.set_turn_pid(143, 80);
   chassis.wait_drive();
 
   start_lift_to(480, 80);
@@ -453,7 +453,7 @@ void prog_skills(){
   claw_open();
 
 
-  chassis.set_turn_pid(90, 100);
+  chassis.set_turn_pid(-270, 100);
   chassis.wait_drive();
 
   chassis.set_drive_pid(-34, 110, true);
@@ -461,7 +461,7 @@ void prog_skills(){
 
   chassis.wait_drive();
 
-  chassis.set_turn_pid(139, 85);
+  chassis.set_turn_pid(-221, 85);
   chassis.wait_drive();
 
   chassis.set_drive_pid(21, 60, true);
@@ -478,17 +478,19 @@ void prog_skills(){
 
   lift_to(120, 80);
 
-  chassis.set_swing_pid(ez::RIGHT_SWING, 185, 80);
+  chassis.set_swing_pid(ez::RIGHT_SWING, -175, 80);
   chassis.wait_drive();
 
-  chassis.set_drive_pid(-60, 1110, true);
+  chassis.set_drive_pid(-60, 127, true);
   chassis.wait_drive();
 
-  chassis.set_turn_pid(139, 100);
+  chassis.set_turn_pid(-195, 100);
   chassis.wait_drive();
 
   chassis.set_drive_pid(-40, 127, true);
   chassis.wait_drive();
+
+  intake_for(4000, 600);
 
 }
 
