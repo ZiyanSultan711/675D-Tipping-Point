@@ -61,146 +61,6 @@ void modified_exit_condition() {
 }
 
 
-
-
-///
-// Drive Example
-///
-void drive_example() {
-  // The first parameter is target inches
-  // The second parameter is max speed the robot will drive at
-  // The third parameter is a boolean (true or false) for enabling/disabling a slew at the start of drive motions
-  // for slew, only enable it when the drive distance is greater then the slew distance + a few inches
-
-
-  chassis.set_drive_pid(24, DRIVE_SPEED, true);
-  chassis.wait_drive();
-
-  chassis.set_drive_pid(-12, DRIVE_SPEED);
-  chassis.wait_drive();
-
-  chassis.set_drive_pid(-12, DRIVE_SPEED);
-  chassis.wait_drive();
-}
-
-
-
-///
-// Turn Example
-///
-void turn_example() {
-  // The first parameter is target degrees
-  // The second parameter is max speed the robot will drive at
-
-
-  chassis.set_turn_pid(90, TURN_SPEED);
-  chassis.wait_drive();
-
-  chassis.set_turn_pid(45, TURN_SPEED);
-  chassis.wait_drive();
-
-  chassis.set_turn_pid(0, TURN_SPEED);
-  chassis.wait_drive();
-}
-
-
-
-///
-// Combining Turn + Drive
-///
-void drive_and_turn() {
-  chassis.set_drive_pid(24, DRIVE_SPEED, true);
-  chassis.wait_drive();
-
-  chassis.set_turn_pid(45, TURN_SPEED);
-  chassis.wait_drive();
-
-  chassis.set_turn_pid(-45, TURN_SPEED);
-  chassis.wait_drive();
-
-  chassis.set_turn_pid(0, TURN_SPEED);
-  chassis.wait_drive();
-
-  chassis.set_drive_pid(-24, DRIVE_SPEED, true);
-  chassis.wait_drive();
-}
-
-
-
-///
-// Wait Until and Changing Max Speed
-///
-void wait_until_change_speed() {
-  // wait_until will wait until the robot gets to a desired position
-
-
-  // When the robot gets to 6 inches, the robot will travel the remaining distance at a max speed of 40
-  chassis.set_drive_pid(24, DRIVE_SPEED, true);
-  chassis.wait_until(6);
-  chassis.set_max_speed(40); // After driving 6 inches at DRIVE_SPEED, the robot will go the remaining distance at 40 speed
-  chassis.wait_drive();
-
-  chassis.set_turn_pid(45, TURN_SPEED);
-  chassis.wait_drive();
-
-  chassis.set_turn_pid(-45, TURN_SPEED);
-  chassis.wait_drive();
-
-  chassis.set_turn_pid(0, TURN_SPEED);
-  chassis.wait_drive();
-
-  // When the robot gets to -6 inches, the robot will travel the remaining distance at a max speed of 40
-  chassis.set_drive_pid(-24, DRIVE_SPEED, true);
-  chassis.wait_until(-6);
-  chassis.set_max_speed(40); // After driving 6 inches at DRIVE_SPEED, the robot will go the remaining distance at 40 speed
-  chassis.wait_drive();
-}
-
-
-
-///
-// Swing Example
-///
-void swing_example() {
-  // The first parameter is ez::LEFT_SWING or ez::RIGHT_SWING
-  // The second parameter is target degrees
-  // The third parameter is speed of the moving side of the drive
-
-
-  chassis.set_swing_pid(ez::LEFT_SWING, 45, SWING_SPEED);
-  chassis.wait_drive();
-
-  chassis.set_drive_pid(24, DRIVE_SPEED, true);
-  chassis.wait_until(12);
-
-  chassis.set_swing_pid(ez::RIGHT_SWING, 0, SWING_SPEED);
-  chassis.wait_drive();
-}
-
-
-
-///
-// Auto that tests everything
-///
-void combining_movements() {
-  chassis.set_drive_pid(24, DRIVE_SPEED, true);
-  chassis.wait_drive();
-
-  chassis.set_turn_pid(45, TURN_SPEED);
-  chassis.wait_drive();
-
-  chassis.set_swing_pid(ez::RIGHT_SWING, -45, TURN_SPEED);
-  chassis.wait_drive();
-
-  chassis.set_turn_pid(0, TURN_SPEED);
-  chassis.wait_drive();
-
-  chassis.set_drive_pid(-24, DRIVE_SPEED, true);
-  chassis.wait_drive();
-}
-
-
-
 ///
 // Interference example
 ///
@@ -362,7 +222,7 @@ void prog_skills(){
   chassis.wait_drive();
 
   claw_close();
-  wait(400);
+  wait(200);
 
 
 
@@ -432,7 +292,7 @@ void prog_skills(){
   wait(300);
 
   // --------------------------------------------------------------
-  // alliance mogo scored on plat
+  // alliance mogo scored on plat (80)
 
   chassis.set_turn_pid(-90, 100);
   chassis.wait_drive();
@@ -484,7 +344,7 @@ void prog_skills(){
   wait(400);
 
   // ----------------------------------------------------------------
-  // alliance mogo scored on plat
+  // alliance mogo scored on plat (120)
 
   lift_to(500, 80);
 
@@ -511,15 +371,15 @@ void prog_skills(){
   claw_open();
 
   // ------------------------------------------------------------------
-  // tall yellow scored in zone
+  // tall yellow scored in zone (140)
 
-  chassis.set_drive_pid(-16, 70, true);
+  chassis.set_drive_pid(-17.5, 70, true);
   chassis.wait_drive();
 
   chassis.set_turn_pid(90, 80);
   chassis.wait_drive();
 
-  chassis.set_drive_pid(-15, 60);
+  chassis.set_drive_pid(-16.5, 60);
   chassis.wait_drive();
 
   tilter_up();
@@ -528,7 +388,7 @@ void prog_skills(){
   // alliance goal picked up
 
 
-  chassis.set_drive_pid(11, 80);
+  chassis.set_drive_pid(12, 80);
   chassis.wait_drive();
 
   chassis.set_turn_pid(180, 80);
@@ -549,7 +409,7 @@ void prog_skills(){
   chassis.set_turn_pid(144, 80);
   chassis.wait_drive();
 
-  start_lift_to(490, 80);
+  start_lift_to(480, 80);
 
   chassis.set_drive_pid(45, 80);
   chassis.wait_until(30);
@@ -582,82 +442,69 @@ void prog_skills(){
 
   lift_to(480, 130);
 
-  chassis.set_turn_pid(140, 50);
+  chassis.set_turn_pid(-210, 50);
   chassis.wait_drive();
 
   chassis.set_drive_pid(20, 100);
+  chassis.wait_until(8);
+  chassis.set_max_speed(60);
   chassis.wait_drive();
 
   claw_open();
 
-  //
-  // start_intake(500);
-  //
-  // chassis.set_drive_pid(20, 100, true);
-  // chassis.wait_drive();
-  //
-  // wait(200);
-  //
-  // chassis.set_drive_pid(-12, 100, true);
-  // chassis.wait_drive();
-  //
-  // wait(200);
-  //
-  // chassis.set_drive_pid(12, 100, true);
-  // chassis.wait_drive();
-  //
-  // wait(200);
-  //
-  // chassis.set_drive_pid(-12, 100, true);
-  // chassis.wait_drive();
-  //
-  // wait(200);
-  //
-  // chassis.set_drive_pid(12, 100, true);
-  // chassis.wait_drive();
-  //
-  // wait(200);
-  //
-  // chassis.set_drive_pid(-12, 100, true);
-  // chassis.wait_drive();
-  //
-  // wait(200);
-  //
-  // chassis.set_drive_pid(12, 100, true);
-  // chassis.wait_drive();
-  //
-  // stop_intake();
-  // //mogo_down(80);
 
+  chassis.set_turn_pid(90, 100);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(-34, 110, true);
+  start_lift_to(0, 200);
+
+  chassis.wait_drive();
+
+  chassis.set_turn_pid(139, 85);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(21, 60, true);
+  chassis.wait_drive();
+
+  claw_close();
+
+
+  // grabs alliance goal near platform
+
+
+  chassis.set_drive_pid(-3, 70, true);
+  chassis.wait_drive();
+
+  lift_to(120, 80);
+
+  chassis.set_swing_pid(ez::RIGHT_SWING, 185, 80);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(-60, 1110, true);
+  chassis.wait_drive();
+
+  chassis.set_turn_pid(139, 100);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(-40, 127, true);
+  chassis.wait_drive();
 
 }
 
 void left_auto(){
+  lift_r.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  lift_l.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+
   start_flipout();
 
-  chassis.set_drive_pid(42.5, 127);
+  chassis.set_drive_pid(42, 127); //fwd towards yellow mogo
   chassis.wait_drive();
 
   start_claw_close();
+  wait(100);
+  start_lift_to(20, 50);
 
-  chassis.set_drive_pid(-36, 127);
+  chassis.set_drive_pid(-40, 127); //drives bwd with mogo
   chassis.wait_drive();
-
-  claw_open();
-
-  chassis.set_swing_pid(ez::RIGHT_SWING, -25, 80);
-  chassis.wait_drive();
-
-  chassis.set_drive_pid(-12, DRIVE_SPEED);
-  chassis.wait_drive();
-
-  chassis.set_turn_pid(-110, 80);
-  chassis.wait_drive();
-
-  //mogo_down(200);
-
-  chassis.set_drive_pid(-12, 60);
-  chassis.wait_drive();
-
-  //mogo_mid(200);
 }

@@ -11,7 +11,7 @@ bool mogo_clamp_closed = false;
 bool lift_manual_control_enabled = true;
 bool lift_timed_out = false;
 
-bool clamp_current_state = true;
+bool clamp_current_state = false;
 
 int conveyor_speed = 510;
 

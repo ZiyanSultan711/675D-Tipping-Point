@@ -69,15 +69,17 @@ void initialize() {
 
   // Autonomous Selector using LLEMMU
   ez::as::auton_selector.add_autons({
-    Auton("ELIM AUTO BRRRRRRRR", two_mogo_match_loads),
     Auton("prog skills go brrrrrrrrrr", prog_skills),
-    //Auton("Left mogo with Match Loads", left_auto),
+    Auton("ELIM AUTO BRRRRRRRR", two_mogo_match_loads),
+    Auton("Left mogo", left_auto),
     //Auton("Interference\n\nAfter driving forward, robot performs differently if interfered or not.", interfered_example),
   });
 
   // Initialize chassis and auton selector
   chassis.initialize();
   ez::as::initialize();
+
+
 }
 
 
