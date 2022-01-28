@@ -106,6 +106,8 @@ void interfered_example() {
 // . . .
 
 void two_mogo_match_loads(){
+  chassis.set_pid_constants(&chassis.forward_drivePID, 0.48, 0, 1.8, 0); //0.45
+  chassis.set_pid_constants(&chassis.backward_drivePID, 0.48, 0, 1.8, 0); //0.45
   chassis.set_pid_constants(&chassis.turnPID, 5, 0.003, 22, 15);
 
   lift_r.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
@@ -119,10 +121,12 @@ void two_mogo_match_loads(){
   chassis.wait_drive();
 
   start_claw_close();
-  wait(100);
-  start_lift_to(20, 50);
+  wait(70);
 
   chassis.set_drive_pid(-40, 127); //drives bwd with mogo
+  chassis.wait_until(-2);
+  start_lift_to(20, 50);
+
   chassis.wait_until(-18);
   start_claw_open(); //drops off mogo in zone
 
