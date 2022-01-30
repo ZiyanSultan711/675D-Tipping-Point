@@ -159,15 +159,13 @@ void two_mogo_match_loads(){
   chassis.set_drive_pid(-19, DRIVE_SPEED); //drives bwd
   chassis.wait_drive();
 
-  chassis.set_turn_pid(-130, TURN_SPEED); //turns to line up with alliance mogo
+  chassis.set_turn_pid(-127, TURN_SPEED); //turns to line up with alliance mogo
   chassis.wait_until(-90);
   tilter_down();
 
   chassis.wait_drive();
 
-  chassis.set_drive_pid(-22, 80); //drives bwd into alliance mogo
-  chassis.wait_until(-14);
-  chassis.set_max_speed(60);
+  chassis.set_drive_pid(-22, 60); //drives bwd into alliance mogo
   chassis.wait_drive();
 
   start_lift_to(520, -140); //lift comes up for match loads
@@ -203,7 +201,7 @@ void prog_skills(){
   // robot starts plat up side, top right corner of 2nd tile, front facing the wall
   tilter_down();
 
-  chassis.set_drive_pid(17.4, 95);
+  chassis.set_drive_pid(17.5, 95);
   chassis.wait_drive();
 
   chassis.set_turn_pid(-90, 80);
@@ -211,18 +209,18 @@ void prog_skills(){
 
   chassis.wait_drive();
 
-  chassis.set_drive_pid(-14.5, 60);
+  chassis.set_drive_pid(-16, 60);
   chassis.wait_drive();
 
   tilter_up();
 
-  chassis.set_drive_pid(14.5, 80);
+  chassis.set_drive_pid(16, 80);
   chassis.wait_drive();
 
   chassis.set_turn_pid(0, 70);
   chassis.wait_drive();
 
-  chassis.set_drive_pid(23.6, 70);
+  chassis.set_drive_pid(23.5, 70);
   chassis.wait_drive();
 
   claw_close();
@@ -286,7 +284,7 @@ void prog_skills(){
 
   lift_to(480, 130);
 
-  chassis.set_turn_pid(-17, 65);
+  chassis.set_turn_pid(-22, 65);
   chassis.wait_drive();
 
   chassis.set_drive_pid(17, 70, true);
@@ -301,12 +299,12 @@ void prog_skills(){
   chassis.set_turn_pid(-90, 100);
   chassis.wait_drive();
 
-  chassis.set_drive_pid(-34, 110, true);
+  chassis.set_drive_pid(-35, 110, true);
   start_lift_to(0, 200);
 
   chassis.wait_drive();
 
-  chassis.set_turn_pid(-41, 85);
+  chassis.set_turn_pid(-42, 85);
   chassis.wait_drive();
 
   chassis.set_drive_pid(21, 60, true);
@@ -377,13 +375,13 @@ void prog_skills(){
   // ------------------------------------------------------------------
   // tall yellow scored in zone (140)
 
-  chassis.set_drive_pid(-16, 70, true);
+  chassis.set_drive_pid(-17, 70, true);
   chassis.wait_drive();
 
   chassis.set_turn_pid(90, 80);
   chassis.wait_drive();
 
-  chassis.set_drive_pid(-16.5, 60);
+  chassis.set_drive_pid(-19, 55);
   chassis.wait_drive();
 
   tilter_up();
@@ -392,14 +390,14 @@ void prog_skills(){
   // alliance goal picked up
 
 
-  chassis.set_drive_pid(12, 80);
+  chassis.set_drive_pid(14.5, 80);
   chassis.wait_drive();
 
   chassis.set_turn_pid(180, 80);
   chassis.wait_drive();
 
   chassis.set_drive_pid(41, 80);
-  chassis.wait_until(23);
+  chassis.wait_until(24);
   claw_close();
 
   start_lift_to(140, 80);
@@ -410,7 +408,7 @@ void prog_skills(){
 
   chassis.wait_drive();
 
-  chassis.set_turn_pid(143, 80);
+  chassis.set_turn_pid(141, 80);
   chassis.wait_drive();
 
   start_lift_to(480, 80);
@@ -446,12 +444,10 @@ void prog_skills(){
 
   lift_to(480, 130);
 
-  chassis.set_turn_pid(-210, 50);
+  chassis.set_turn_pid(-217, 50);
   chassis.wait_drive();
 
-  chassis.set_drive_pid(20, 100);
-  chassis.wait_until(8);
-  chassis.set_max_speed(60);
+  chassis.set_drive_pid(20, 60);
   chassis.wait_drive();
 
   claw_open();
