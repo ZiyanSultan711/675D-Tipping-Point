@@ -46,6 +46,7 @@ void toggle_drive_lock(){
   else{
     drive_lock_enabled=!drive_lock_enabled;
     chassis.set_drive_brake(MOTOR_BRAKE_HOLD);
+    chassis.reset_drive_sensor();
     chassis.set_active_brake(0.1);
     master.rumble("..");
   }
