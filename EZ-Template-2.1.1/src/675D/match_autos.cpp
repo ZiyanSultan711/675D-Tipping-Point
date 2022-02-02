@@ -109,7 +109,7 @@ void left_auto(){
   chassis.wait_drive();
 }
 
-void fast_right_two_mogo(){
+void fast_right_one_mogo(){
   chassis.set_pid_constants(&chassis.forward_drivePID, 0.48, 0, 1.8, 0); //0.45
   chassis.set_pid_constants(&chassis.backward_drivePID, 0.48, 0, 1.8, 0); //0.45
   chassis.set_pid_constants(&chassis.turnPID, 5, 0.003, 22, 15);
@@ -148,4 +148,32 @@ void fast_right_two_mogo(){
 
   chassis.set_turn_pid(-135, 70);
   chassis.wait_drive();
+}
+
+void fast_left_one_mogo(){
+  chassis.set_pid_constants(&chassis.forward_drivePID, 0.48, 0, 1.8, 0); //0.45
+  chassis.set_pid_constants(&chassis.backward_drivePID, 0.48, 0, 1.8, 0); //0.45
+  chassis.set_pid_constants(&chassis.turnPID, 5, 0.003, 22, 15);
+
+  chassis.set_mode(ez::DISABLE);
+  start_claw_open();
+  tilter_down();
+
+  chassis.set_tank(127, 127);
+  while(chassis.right_sensor() < 2150){
+    wait(2);
+  }
+  // chassis.set_tank(0, 0);
+
+  start_claw_close();
+  start_lift_to(20, 100);
+  lift_r.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  lift_l.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+
+  chassis.set_tank(-127, -127);
+  while(chassis.right_sensor() > 800){
+    wait(2);
+  }
+  chassis.set_tank(0, 0);
+  wait(200);
 }
