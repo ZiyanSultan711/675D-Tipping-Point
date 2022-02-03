@@ -395,13 +395,27 @@ void prog_skills(){
   chassis.set_drive_pid(-60, 127, true);
   chassis.wait_drive();
 
-  chassis.set_turn_pid(-195, 100);
+
+  chassis.set_turn_pid(-328, 70);
+  chassis.wait_until(-100);
+  chassis.set_max_speed(60);
+
   chassis.wait_drive();
 
-  chassis.set_drive_pid(-40, 127, true);
+  start_lift_to(600, 140);
+  wait(500);
+
+  chassis.set_drive_pid(31, 70, true);
+  chassis.wait_until(24);
+  chassis.set_max_speed(50);
   chassis.wait_drive();
 
-  intake_for(4000, 600);
-  //4th alliance goal scored in far zone
+  lift_to(405, 80);
+
+  claw_open();
+
+  chassis.set_drive_pid(-5, 10, true);
+  chassis.wait_drive();
+
 
 }
