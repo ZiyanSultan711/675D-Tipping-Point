@@ -5,7 +5,7 @@ bool double_shift = false;
 
 bool drive_lock_enabled = false;
 
-bool mogo_is_down = false;
+bool mogo_is_down = true;
 bool mogo_clamp_closed = false;
 
 bool lift_manual_control_enabled = true;
@@ -13,7 +13,7 @@ bool lift_timed_out = false;
 
 bool clamp_current_state = false;
 
-int conveyor_speed = 510;
+int conveyor_speed = 400;
 
 int lift_up_speed = 200;
 int lift_down_speed = 200;

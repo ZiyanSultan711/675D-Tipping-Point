@@ -307,8 +307,8 @@
         },
         "upload_options": {
             "compress_bin": true,
-            "description": "ez-pz :)",
-            "remote_name": "SKILLS",
+            "description": "making code ez-pz",
+            "remote_name": "EZ-Template",
             "slot": 1
         }
     }
