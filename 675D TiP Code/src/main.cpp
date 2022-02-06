@@ -69,8 +69,8 @@ void initialize() {
 
   // Autonomous Selector using LLEMMU
   ez::as::auton_selector.add_autons({
-    // Auton("RIGHT hard code 1 mogo, match load", fast_right_one_mogo),
-    // Auton("prog skills", prog_skills),
+    Auton("prog skills", prog_skills),
+    Auton("RIGHT hard code 1 mogo, match load", fast_right_one_mogo),
     Auton("RIGHT 2 mogo, match load", two_mogo_match_loads),
     Auton("LEFT hard code 1 mogo", fast_left_one_mogo),
     Auton("LEFT 1 mogo", left_auto),
@@ -82,7 +82,7 @@ void initialize() {
   chassis.initialize();
   ez::as::initialize();
 
-  ez::as::limit_switch_lcd_initialize(&limit_page_up, &limit_page_down);
+  ez::as::limit_switch_lcd_initialize(&limit_page_up);
 }
 
 

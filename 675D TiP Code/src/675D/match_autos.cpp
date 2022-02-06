@@ -119,18 +119,20 @@ void fast_right_one_mogo(){
   tilter_down();
 
   chassis.set_tank(127, 127);
-  while(chassis.right_sensor() < 2070){
+  while(chassis.right_sensor() < 1980){
     wait(2);
   }
   // chassis.set_tank(0, 0);
 
   start_claw_close();
   start_lift_to(20, 100);
+
+  chassis.set_tank(-127, -127);
+
   lift_r.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   lift_l.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
-  chassis.set_tank(-127, -127);
-  while(chassis.right_sensor() > 1100){
+  while(chassis.right_sensor() > 950){
     wait(2);
   }
   chassis.set_tank(0, 0);
@@ -148,6 +150,22 @@ void fast_right_one_mogo(){
 
   chassis.set_turn_pid(-135, 70);
   chassis.wait_drive();
+
+  lift_to(500, 160);
+
+  start_intake(450);
+  wait(500);
+
+  chassis.set_drive_pid(12, 70);
+  chassis.wait_drive();
+
+  wait(500);
+
+  chassis.set_drive_pid(-12, 70);
+  start_lift_to(0, 150);
+  chassis.wait_drive();
+
+  stop_intake();
 }
 
 void fast_left_one_mogo(){
