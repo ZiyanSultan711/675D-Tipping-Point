@@ -5,11 +5,11 @@
 Drive chassis (
   // Left Chassis Ports (negative port will reverse it!)
   //   the first port is the sensored port (when trackers are not used!)
-  {-1, -21}
+  {-1, -14, -21}
 
   // Right Chassis Ports (negative port will reverse it!)
   //   the first port is the sensored port (when trackers are not used!)
-  ,{9, 8}
+  ,{8, 9, 15}
 
   // IMU Port
   ,11
@@ -150,8 +150,7 @@ void autonomous() {
 void opcontrol() {
   // This is preference to what you like to drive on.
   chassis.set_drive_brake(MOTOR_BRAKE_COAST);
-  lift_r.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-  lift_l.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   conveyor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 
   while (true) {

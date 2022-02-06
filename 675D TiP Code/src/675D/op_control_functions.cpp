@@ -15,8 +15,8 @@ bool clamp_current_state = false;
 
 int conveyor_speed = 510;
 
-int lift_up_speed = 200;
-int lift_down_speed = 200;
+int lift_up_speed = 100;
+int lift_down_speed = 100;
 int lift_up_speed_slowed = 100;
 int lift_down_speed_slowed = 100;
 bool lift_task_running = false;
@@ -74,35 +74,28 @@ void lift_control_manual(){
   if(!shift && !double_shift)
   {
     if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
-      lift_r.move_velocity(lift_down_speed);
-      lift_l.move_velocity(lift_down_speed);
+      lift.move_velocity(lift_down_speed);
     }
     else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
-      lift_r.move_velocity(-lift_up_speed);
-      lift_l.move_velocity(-lift_up_speed);
+      lift.move_velocity(-lift_up_speed);
     }
     else{
-      lift_r.move_velocity(0);
-      lift_l.move_velocity(0);
+      lift.move_velocity(0);
     }
   }
   else if(double_shift){
     if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
-      lift_r.move_velocity(lift_down_speed_slowed);
-      lift_l.move_velocity(lift_down_speed_slowed);
+      lift.move_velocity(lift_down_speed_slowed);
     }
     else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
-      lift_r.move_velocity(-lift_up_speed_slowed);
-      lift_l.move_velocity(-lift_up_speed_slowed);
+      lift.move_velocity(-lift_up_speed_slowed);
     }
     else{
-      lift_r.move_velocity(0);
-      lift_l.move_velocity(0);
+      lift.move_velocity(0);
     }
   }
   else{
-    lift_r.move_velocity(0);
-    lift_l.move_velocity(0);
+    lift.move_velocity(0);
   }
 }
 
@@ -118,13 +111,12 @@ int lift_task(){
 
   master.rumble(".");
 
-  lift_l.move_absolute(-1, 200);
-  lift_r.move_absolute(-1, 200);
+  lift.move_absolute(-1, 100);
 
   printf("task called");
   pros::Task timeout(lift_timeout);
 
-  while(lift_l.get_position() < -6){
+  while(lift.get_position() < -6){
     pros::delay(2);
   }
 

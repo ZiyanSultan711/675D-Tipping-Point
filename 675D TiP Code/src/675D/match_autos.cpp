@@ -5,8 +5,7 @@ void two_mogo_match_loads(){
   chassis.set_pid_constants(&chassis.backward_drivePID, 0.48, 0, 1.8, 0); //0.45
   chassis.set_pid_constants(&chassis.turnPID, 5, 0.003, 22, 15);
 
-  lift_r.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-  lift_l.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
   pros::Task start_timer(check_for_time);
 
@@ -32,8 +31,7 @@ void two_mogo_match_loads(){
 
   start_lift_to(0, 100);
 
-  lift_l.set_brake_mode(MOTOR_BRAKE_HOLD);
-  lift_r.set_brake_mode(MOTOR_BRAKE_HOLD);
+  lift.set_brake_mode(MOTOR_BRAKE_HOLD);
 
   chassis.set_drive_pid(52, DRIVE_SPEED); //drives fwd to middle yellow mogo
   chassis.wait_until(40);
@@ -43,8 +41,7 @@ void two_mogo_match_loads(){
   claw_close(); //grabs middle yellow mogo
   start_lift_to(10, 40);
 
-  lift_l.set_brake_mode(MOTOR_BRAKE_COAST);
-  lift_r.set_brake_mode(MOTOR_BRAKE_COAST);
+  lift.set_brake_mode(MOTOR_BRAKE_COAST);
 
   chassis.set_drive_pid(-34, DRIVE_SPEED); //drives bwd holding middle yellow mogo
   chassis.wait_drive();
@@ -93,8 +90,7 @@ void two_mogo_match_loads(){
 }
 
 void left_auto(){
-  lift_r.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-  lift_l.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
   start_flipout();
 
@@ -129,8 +125,7 @@ void fast_right_one_mogo(){
 
   chassis.set_tank(-127, -127);
 
-  lift_r.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-  lift_l.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
   while(chassis.right_sensor() > 950){
     wait(2);
@@ -185,8 +180,7 @@ void fast_left_one_mogo(){
 
   start_claw_close();
   start_lift_to(20, 100);
-  lift_r.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-  lift_l.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
   chassis.set_tank(-127, -127);
   while(chassis.right_sensor() > 800){
