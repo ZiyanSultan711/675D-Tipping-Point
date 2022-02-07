@@ -8,17 +8,43 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 // Updates max speed
 void Drive::set_max_speed(int speed) {
-  max_speed = abs(speed);
+  max_speed = util::clip_num(abs(speed), 127, -127);
 }
+
+void Drive::reset_pid_targets() {
+  headingPID.set_target(0);
+  leftPID.set_target(0);
+  rightPID.set_target(0);
+  forward_drivePID.set_target(0);
+  backward_drivePID.set_target(0);
+  turnPID.set_target(0);
+}
+
+void Drive::set_angle(double angle) {
+  headingPID.set_target(angle);
+  reset_gyro(angle);
+}
+
+void Drive::set_mode(e_mode p_mode) {
+  mode = p_mode;
+}
+
+void Drive::set_turn_min(int min) { turn_min = abs(min); }
+int Drive::get_turn_min() { return turn_min; }
+
+void Drive::set_swing_min(int min) { swing_min = abs(min); }
+int Drive::get_swing_min() { return swing_min; }
+
+e_mode Drive::get_mode() { return mode; }
 
 // Set drive PID
 void Drive::set_drive_pid(double target, int speed, bool slew_on, bool toggle_heading) {
   TICK_PER_INCH = get_tick_per_inch();
 
   // Print targets
-  printf("Drive Started... Target Value: %f (%f ticks)", target, target * TICK_PER_INCH);
-  if (slew_on) printf(" with slew");
-  printf("\n");
+  if (print_toggle) printf("Drive Started... Target Value: %f (%f ticks)", target, target * TICK_PER_INCH);
+  if (slew_on && print_toggle) printf(" with slew");
+  if (print_toggle) printf("\n");
 
   // Global setup
   set_max_speed(speed);
@@ -55,13 +81,13 @@ void Drive::set_drive_pid(double target, int speed, bool slew_on, bool toggle_he
   slew_initialize(right_slew, slew_on, max_speed, r_target_encoder, right_sensor(), r_start, is_backwards);
 
   // Run task
-  mode = DRIVE;
+  set_mode(DRIVE);
 }
 
 // Set turn PID
 void Drive::set_turn_pid(double target, int speed) {
   // Print targets
-  printf("Turn Started... Target Value: %f\n", target);
+  if (print_toggle) printf("Turn Started... Target Value: %f\n", target);
 
   // Set PID targets
   turnPID.set_target(target);
@@ -69,13 +95,13 @@ void Drive::set_turn_pid(double target, int speed) {
   set_max_speed(speed);
 
   // Run task
-  mode = TURN;
+  set_mode(TURN);
 }
 
 // Set swing PID
 void Drive::set_swing_pid(e_swing type, double target, int speed) {
   // Print targets
-  printf("Swing Started... Target Value: %f\n", target);
+  if (print_toggle) printf("Swing Started... Target Value: %f\n", target);
   current_swing = type;
 
   // Set PID targets
@@ -84,5 +110,5 @@ void Drive::set_swing_pid(e_swing type, double target, int speed) {
   set_max_speed(speed);
 
   // Run task
-  mode = SWING;
+  set_mode(SWING);
 }

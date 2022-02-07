@@ -307,7 +307,7 @@
         },
         "upload_options": {
             "compress_bin": true,
-            "description": "ez-pz :)",
+            "description": "tilter starts open, claw opens upon starting",
             "remote_name": "DRIVER SKILLS",
             "slot": 2
         }

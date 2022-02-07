@@ -5,10 +5,10 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 #include <filesystem>
+
 #include "main.h"
 
-namespace ez {
-namespace as {
+namespace ez::as {
 AutonSelector auton_selector{};
 
 void update_auto_sd() {
@@ -33,10 +33,10 @@ void init_auton_selector() {
     fread(l_buf, 1, 5, as_usd_file_read);
     ez::as::auton_selector.current_auton_page = std::stof(l_buf);
     fclose(as_usd_file_read);
-  } 
+  }
   // If file doesn't exist, create file
   else {
-    update_auto_sd(); // Writing to a file that doesn't exist creates the file
+    update_auto_sd();  // Writing to a file that doesn't exist creates the file
     printf("Created auto.txt\n");
   }
 
@@ -78,5 +78,38 @@ void initialize() {
 void shutdown() {
   pros::lcd::shutdown();
 }
-}  // namespace as
-}  // namespace ez
+
+bool turn_off = false;
+
+// Using a button to control the lcd
+pros::ADIDigitalIn* left_limit_switch = nullptr;
+pros::ADIDigitalIn* right_limit_switch = nullptr;
+pros::Task limit_switch_task(limitSwitchTask);
+void limit_switch_lcd_initialize(pros::ADIDigitalIn* right_limit, pros::ADIDigitalIn* left_limit) {
+  if (!left_limit && !right_limit) {
+    delete left_limit_switch;
+    delete right_limit_switch;
+    if (pros::millis() <= 100)
+      turn_off = true;
+    return;
+  }
+  turn_off = false;
+  right_limit_switch = right_limit;
+  left_limit_switch = left_limit;
+  limit_switch_task.resume();
+}
+
+void limitSwitchTask() {
+  while (true) {
+    if (right_limit_switch && right_limit_switch->get_new_press())
+      page_up();
+    else if (left_limit_switch && left_limit_switch->get_new_press())
+      page_down();
+
+    if (pros::millis() >= 500 && turn_off)
+      limit_switch_task.suspend();
+
+    pros::delay(50);
+  }
+}
+}  // namespace ez::as

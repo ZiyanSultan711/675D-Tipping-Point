@@ -4,6 +4,10 @@
 
 extern Drive chassis;
 
+extern const int DRIVE_SPEED;
+extern const int TURN_SPEED;
+extern const int SWING_SPEED;
+
 void drive_example();
 void turn_example();
 void drive_and_turn();
@@ -16,6 +20,4 @@ void default_constants();
 void one_mogo_constants();
 void two_mogo_constants();
 
-void two_mogo_match_loads();
 void prog_skills();
-void left_auto();

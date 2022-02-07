@@ -26,22 +26,42 @@ All code below assumes this constructor is used.  As long as the name of the con
 // Chassis constructor
 Drive chassis (
   // Left Chassis Ports (negative port will reverse it!)
-  {1, -2}
+  //   the first port is the sensored port (when trackers are not used!)
+  {1, -2, 3}
 
   // Right Chassis Ports (negative port will reverse it!)
-  ,{-3, 4}
+  //   the first port is the sensored port (when trackers are not used!)
+  ,{-4, 5, -6}
 
   // IMU Port
-  ,5
+  ,7
 
   // Wheel Diameter (Remember, 4" wheels are actually 4.125!)
-  ,3.25
+  //    (or tracking wheel diameter)
+  ,4.125
 
   // Cartridge RPM
+  //   (or tick per rotation if using tracking wheels)
   ,600
 
-  // External Gear Ratio 
-  ,1.66666666667
+  // External Gear Ratio (MUST BE DECIMAL)
+  //    (or gear ratio of tracking wheel)
+  // eg. if your drive is 84:36 where the 36t is powered, your RATIO would be 2.333.
+  // eg. if your drive is 36:60 where the 60t is powered, your RATIO would be 0.6.
+  ,2.333
+
+  // Uncomment if using tracking wheels
+  /*
+  // Left Tracking Wheel Ports (negative port will reverse it!)
+  ,{1, 2}
+
+  // Right Tracking Wheel Ports (negative port will reverse it!)
+  ,{3, 4}
+  */
+
+  // Uncomment if tracking wheels are plugged into a 3 wire expander
+  // 3 Wire Port Expander Smart Port
+  // ,9
 );
 
 ```
@@ -253,7 +273,7 @@ void initialize() {
 
 
 ## left_curve_function()
-Returns the input times the red curve [here](https://www.desmos.com/calculator/rcfjjg83zx).  `tank()`, `arcade_standard()`, and `arcade_flipped()` all handle this for you.  
+Returns the input times the red curve [here](https://www.desmos.com/calculator/rcfjjg83zx).  `tank()`, `arcade_standard()`, and `arcade_flipped()` all handle this for you.  When tank is enabled, only this curve is used.  
 `x` input value.  
 **Prototype**
 ```cpp
@@ -318,3 +338,52 @@ void initialize() {
   chassis.set_joystick_threshold(5);
 }
 ```
+
+
+---
+
+
+## joy_thresh_opcontrol()
+Runs the joystick control.  Sets the left drive to `l_stick`, and right drive to `r_stick`.  Runs active brake and joystick thresholds.    
+**Prototype**
+```cpp
+void joy_thresh_opcontrol(int l_stick, int r_stick);
+```
+
+**Example** 
+```cpp
+void opcontrol() {
+  while (true) {
+    chassis.joy_thresh_opcontroL(master.get_analog(ANALOG_LEFT_Y), master.get_analog(ANALOG_RIGHT_Y));
+
+    pros::delay(ez::util::DELAY_TIME);
+  }
+  chassis.set_joystick_threshold(5);
+}
+```
+
+
+---
+## modify_curve_with_controller()
+Allows the user to modify the curve with the controller.      
+**Prototype**
+```cpp
+void modify_curve_with_controller();
+```
+
+**Example** 
+```cpp
+void opcontrol() {
+  while (true) {
+    chassis.joy_thresh_opcontroL(master.get_analog(ANALOG_LEFT_Y), master.get_analog(ANALOG_RIGHT_Y));
+
+    chassis.modify_curve_with_controller();
+
+    pros::delay(ez::util::DELAY_TIME);
+  }
+  chassis.set_joystick_threshold(5);
+}
+```
+
+
+---

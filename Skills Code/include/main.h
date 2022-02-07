@@ -49,6 +49,7 @@
 #include "675D/op_control_functions.hpp"
 #include "675D/auton_helper_functions.hpp"
 #include "675D/motors_and_sensors.hpp"
+#include "675D/match_autos.hpp"
 
 /**
  * If you find doing pros::Motor() to be tedious and you'd prefer just to do

@@ -5,11 +5,11 @@
 Drive chassis (
   // Left Chassis Ports (negative port will reverse it!)
   //   the first port is the sensored port (when trackers are not used!)
-  {-1, -21}
+  {-1, -14, -21}
 
   // Right Chassis Ports (negative port will reverse it!)
   //   the first port is the sensored port (when trackers are not used!)
-  ,{9, 8}
+  ,{8, 9, 15}
 
   // IMU Port
   ,11
@@ -60,7 +60,7 @@ void initialize() {
   chassis.toggle_modify_curve_with_controller(false); // Enables modifying the controller curve with buttons on the joysticks
   chassis.set_active_brake(0); // Sets the active brake kP. We recommend 0.1.
   chassis.set_curve_default(0, 1.3); // Defaults for curve. (Comment this line out if you have an SD card!)
-  chassis.set_joystick_threshold(2);
+  chassis.set_joystick_threshold(1);
   default_constants(); // Set the drive to your own constants from autons.cpp!
 
   // These are already defaulted to these buttons, but you can change the left/right curve buttons here!
@@ -69,9 +69,12 @@ void initialize() {
 
   // Autonomous Selector using LLEMMU
   ez::as::auton_selector.add_autons({
-    Auton("prog skills go brrrrrrrrrr", prog_skills),
-    Auton("ELIM AUTO BRRRRRRRR", two_mogo_match_loads),
-    Auton("Left mogo", left_auto),
+    Auton("prog skills", prog_skills),
+    Auton("RIGHT hard code 1 mogo, match load", fast_right_one_mogo),
+    Auton("RIGHT 2 mogo, match load", two_mogo_match_loads),
+    Auton("LEFT hard code 1 mogo", fast_left_one_mogo),
+    Auton("LEFT 1 mogo", left_auto),
+
     //Auton("Interference\n\nAfter driving forward, robot performs differently if interfered or not.", interfered_example),
   });
 
@@ -79,7 +82,7 @@ void initialize() {
   chassis.initialize();
   ez::as::initialize();
 
-
+  ez::as::limit_switch_lcd_initialize(&limit_page_up);
 }
 
 
@@ -90,7 +93,7 @@ void initialize() {
  * the robot is enabled, this task will exit.
  */
 void disabled() {
-  // . . .
+
 }
 
 
@@ -147,11 +150,8 @@ void autonomous() {
 void opcontrol() {
   // This is preference to what you like to drive on.
   chassis.set_drive_brake(MOTOR_BRAKE_COAST);
-  lift_r.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-  lift_l.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   conveyor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-
-  start_claw_open();
 
   while (true) {
     chassis.arcade_standard(ez::SPLIT); // Standard split arcade

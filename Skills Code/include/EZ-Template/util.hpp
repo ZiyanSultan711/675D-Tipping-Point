@@ -13,18 +13,11 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include "api.h"
 
 /**
-  * Controller.
-  */
+ * Controller.
+ */
 extern pros::Controller master;
 
 namespace ez {
-
-#define DISABLE 0
-#define SWING 1
-#define TURN 2
-#define DRIVE 3
-
-extern int mode;
 
 /**
  * Prints our branding all over your pros terminal
@@ -60,6 +53,29 @@ enum e_type { SINGLE = 0,
 enum e_swing { LEFT_SWING = 0,
                RIGHT_SWING = 1 };
 
+/**
+ * Enum for PID::exit_condition outputs.
+ */
+enum exit_output { RUNNING = 1,
+                   SMALL_EXIT = 2,
+                   BIG_EXIT = 3,
+                   VELOCITY_EXIT = 4,
+                   mA_EXIT = 5,
+                   ERROR_NO_CONSTANTS = 6 };
+
+/**
+ * Enum for split and single stick arcade.
+ */
+enum e_mode { DISABLE = 0,
+              SWING = 1,
+              TURN = 2,
+              DRIVE = 3 };
+
+/**
+ * Outputs string for exit_condition enum.
+ */
+std::string exit_to_string(exit_output input);
+
 namespace util {
 extern bool AUTON_RAN;
 
@@ -67,14 +83,17 @@ extern bool AUTON_RAN;
  * Returns 1 if input is positive and -1 if input is negative
  */
 int sgn(double input);
+
 /**
  * Returns true if the input is < 0
  */
 bool is_reversed(double input);
+
 /**
  * Returns input restricted to min-max threshold
  */
-double clip_num(double input, double min, double max);
+double clip_num(double input, double max, double min);
+
 /**
  * Is the SD card plugged in?
  */

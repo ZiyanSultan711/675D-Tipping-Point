@@ -65,14 +65,12 @@ void tilter_up(){
 }
 
 void start_lift_to(int pos, int speed){
-  lift_l.move_absolute(-pos, speed);
-  lift_r.move_absolute(-pos, speed);
+  lift.move_absolute(-pos, speed);
 }
 void lift_to(int pos, int speed){
-  lift_l.move_absolute(-pos, speed);
-  lift_r.move_absolute(-pos, speed);
+  lift.move_absolute(-pos, speed);
 
-  while(fabs(lift_l.get_position() - lift_l.get_target_position()) > 5){
+  while(fabs(lift.get_position() - lift.get_target_position()) > 5){
     wait(5);
   }
 }
