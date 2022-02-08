@@ -73,7 +73,7 @@ void initialize() {
     Auton("RIGHT hard code 1 mogo, match load", fast_right_one_mogo),
     Auton("RIGHT 2 mogo, match load", two_mogo_match_loads),
     Auton("LEFT hard code 1 mogo", fast_left_one_mogo),
-    Auton("LEFT 1 mogo", left_auto),
+    // Auton("LEFT 1 mogo", left_auto),
 
     //Auton("Interference\n\nAfter driving forward, robot performs differently if interfered or not.", interfered_example),
   });
