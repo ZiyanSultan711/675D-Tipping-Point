@@ -348,3 +348,132 @@ void left_awp(){
  tilter_down();
 
 }
+
+void left_ring_and_yellow(){
+  chassis.set_pid_constants(&chassis.forward_drivePID, 0.48, 0, 1.8, 0); //0.45
+  chassis.set_pid_constants(&chassis.backward_drivePID, 0.48, 0, 1.8, 0); //0.45
+  //chassis.set_pid_constants(&chassis.turnPID, 5, 0.003, 22, 15);
+
+  lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+
+  tilter_down();
+
+  start_lift_to(210, 100);
+  wait(500);
+
+  chassis.set_drive_pid(9, 90, true);
+  chassis.wait_drive();
+
+  claw_open();
+  wait(400);
+
+  chassis.set_drive_pid(-4, 90, true);
+  chassis.wait_drive();
+
+  chassis.set_turn_pid(-79, 90);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(44, 120, true);
+  start_lift_to(0, 100);
+  chassis.wait_drive();
+
+  claw_close();
+  start_lift_to(20, 100);
+
+  chassis.set_drive_pid(-40, 110, true);
+  chassis.wait_drive();
+}
+
+void left_ring_and_yellow_steal(){
+  chassis.set_pid_constants(&chassis.forward_drivePID, 0.48, 0, 1.8, 0); //0.45
+  chassis.set_pid_constants(&chassis.backward_drivePID, 0.48, 0, 1.8, 0); //0.45
+  //chassis.set_pid_constants(&chassis.turnPID, 5, 0.003, 22, 15);
+
+  lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+
+  tilter_down();
+
+  start_lift_to(210, 100);
+  wait(500);
+
+  chassis.set_drive_pid(9, 90, true);
+  chassis.wait_drive();
+
+  claw_open();
+  wait(400);
+
+  chassis.set_drive_pid(-4, 90, true);
+  chassis.wait_drive();
+
+  chassis.set_turn_pid(-79, 90);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(50, 110, true);
+  start_lift_to(0, 100);
+  chassis.wait_drive();
+
+  chassis.set_turn_pid(-90, 70);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(22, 80, true);
+  chassis.wait_drive();
+
+  claw_close();
+  start_lift_to(20, 100);
+
+  chassis.set_drive_pid(-60, 110, true);
+  chassis.wait_drive();
+}
+
+void left_finesse(){
+  chassis.set_pid_constants(&chassis.forward_drivePID, 0.48, 0, 1.8, 0); //0.45
+  chassis.set_pid_constants(&chassis.backward_drivePID, 0.48, 0, 1.8, 0); //0.45
+  //chassis.set_pid_constants(&chassis.turnPID, 5, 0.003, 22, 15);
+
+  lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+
+  start_flipout();
+
+  chassis.set_swing_pid(ez::LEFT_SWING, 60, 110);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(23, 110);
+  chassis.wait_drive();
+
+  chassis.set_swing_pid(ez::RIGHT_SWING, 30, 110);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(25, 90);
+  chassis.wait_drive();
+
+  claw_close();
+  start_lift_to(20, 100);
+
+  chassis.set_drive_pid(-25, 100);
+
+  chassis.wait_until(-18);
+  chassis.set_max_speed(65);
+  chassis.wait_drive();
+
+  claw_open();
+  wait(200);
+
+  chassis.set_swing_pid(ez::RIGHT_SWING, 90, 110);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(-15, 120);
+  chassis.wait_drive();
+
+  chassis.set_turn_pid(3, 105);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(48, 120);
+  start_lift_to(0, 100);
+  chassis.wait_drive();
+
+  claw_close();
+  start_lift_to(20, 100);
+
+  chassis.set_drive_pid(-55, 110);
+  chassis.wait_drive();
+}

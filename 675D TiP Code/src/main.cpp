@@ -75,7 +75,12 @@ void initialize() {
     // Auton("LEFT hard code 1 mogo", fast_left_one_mogo),
     // Auton("RIGHT mid fake", mid_fake),
     // Auton("RIGHT awp", right_awp),
-    Auton("LEFT awp + mid netrual", left_awp),
+    // Auton("LEFT awp + mid netrual", left_awp),
+    // Auton("LEFT ring + netrual", left_ring_and_yellow),
+    // Auton("LEFT ring + netrual steal", left_ring_and_yellow_steal),
+    Auton("LEFT finesse two goals", left_finesse),
+
+
 
 
     //Auton("Interference\n\nAfter driving forward, robot performs differently if interfered or not.", interfered_example),
