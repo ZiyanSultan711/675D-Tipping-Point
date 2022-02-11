@@ -74,7 +74,8 @@ void initialize() {
     // Auton("RIGHT hard code 1 mogo, match load", fast_right_one_mogo),
     // Auton("LEFT hard code 1 mogo", fast_left_one_mogo),
     // Auton("RIGHT mid fake", mid_fake),
-    Auton("RIGHT awp", right_awp),
+    // Auton("RIGHT awp", right_awp),
+    Auton("LEFT awp + mid netrual", left_awp),
 
 
     //Auton("Interference\n\nAfter driving forward, robot performs differently if interfered or not.", interfered_example),

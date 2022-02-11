@@ -234,7 +234,7 @@ void mid_fake(){
 void right_awp(){
   chassis.set_pid_constants(&chassis.forward_drivePID, 0.48, 0, 1.8, 0); //0.45
   chassis.set_pid_constants(&chassis.backward_drivePID, 0.48, 0, 1.8, 0); //0.45
-  chassis.set_pid_constants(&chassis.turnPID, 5, 0.003, 22, 15);
+  //chassis.set_pid_constants(&chassis.turnPID, 5, 0.003, 22, 15);
 
   lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
@@ -287,5 +287,64 @@ void right_awp(){
 
   start_lift_to(0, 100);
   tilter_down();
+
+}
+
+void left_awp(){
+  chassis.set_pid_constants(&chassis.forward_drivePID, 0.48, 0, 1.8, 0); //0.45
+  chassis.set_pid_constants(&chassis.backward_drivePID, 0.48, 0, 1.8, 0); //0.45
+  //chassis.set_pid_constants(&chassis.turnPID, 5, 0.003, 22, 15);
+
+  lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+
+  tilter_down();
+
+  start_lift_to(210, 100);
+  wait(500);
+
+  chassis.set_drive_pid(8, 90, true);
+  chassis.wait_drive();
+
+  claw_open();
+
+  chassis.set_swing_pid(ez::RIGHT_SWING, 150, 105);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(-6, 90, true);
+  chassis.wait_drive();
+
+  chassis.set_swing_pid(ez::RIGHT_SWING, 180, 105);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(-75, 110, true);
+  chassis.wait_drive();
+
+  chassis.set_turn_pid(178, 100);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(-17.5, 55, true);
+  chassis.wait_drive();
+
+  tilter_up();
+  wait(400);
+
+  chassis.set_swing_pid(ez::LEFT_SWING, 218, 105);
+  chassis.wait_drive();
+  start_intake_for(2500, 400);
+
+  chassis.set_drive_pid(48, 90, true);
+  start_lift_to(0, 100);
+
+  chassis.wait_until(37);
+  chassis.set_max_speed(65);
+  chassis.wait_drive();
+
+  claw_close();
+  start_lift_to(20, 100);
+
+  chassis.set_drive_pid(-42, 80, true);
+  chassis.wait_drive();
+
+ tilter_down();
 
 }
