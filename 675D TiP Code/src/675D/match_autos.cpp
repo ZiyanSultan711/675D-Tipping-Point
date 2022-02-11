@@ -472,8 +472,8 @@ void left_finesse(){
   chassis.wait_drive();
 
   claw_close();
-  start_lift_to(20, 100);
+  start_lift_to(30, 100);
 
-  chassis.set_drive_pid(-55, 110);
+  chassis.set_drive_pid(-55, 127);
   chassis.wait_drive();
 }
