@@ -69,11 +69,11 @@ void initialize() {
 
   // Autonomous Selector using LLEMMU
   ez::as::auton_selector.add_autons({
-    Auton("prog skills", prog_skills),
-    Auton("RIGHT hard code 1 mogo, match load", fast_right_one_mogo),
+    // Auton("prog skills", prog_skills),
     Auton("RIGHT 2 mogo, match load", two_mogo_match_loads),
+    Auton("RIGHT hard code 1 mogo, match load", fast_right_one_mogo),
     Auton("LEFT hard code 1 mogo", fast_left_one_mogo),
-    Auton("LEFT 1 mogo", left_auto),
+    Auton("RIGHT mid fake", mid_fake),
 
     //Auton("Interference\n\nAfter driving forward, robot performs differently if interfered or not.", interfered_example),
   });
@@ -162,7 +162,7 @@ void opcontrol() {
     lift_control();
     clamp_control();
     conveyor_control();
-
+    blocker_control();
 
     pros::delay(ez::util::DELAY_TIME); // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
   }

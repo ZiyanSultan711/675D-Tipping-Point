@@ -10,6 +10,9 @@ void tilter_down();
 
 void tilter_up();
 
+void blocker_down();
+void blocker_up();
+
 ////
 // moves lift to the specified position at the specified speed
 // NON-BLOCKING

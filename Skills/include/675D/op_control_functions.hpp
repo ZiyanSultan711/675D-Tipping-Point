@@ -17,6 +17,8 @@ extern int lift_up_speed;
 extern int lift_down_speed;
 extern bool lift_task_running;
 
+extern bool blocker_is_down;
+
 extern pros::Task mogo_control_task();
 extern pros::Task lift_control_task();
 
@@ -26,3 +28,4 @@ void mogo_control();
 void lift_control();
 void clamp_control();
 void conveyor_control();
+void blocker_control();

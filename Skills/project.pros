@@ -307,8 +307,8 @@
         },
         "upload_options": {
             "compress_bin": true,
-            "description": "tilter starts open, claw opens upon starting",
-            "remote_name": "DRIVER SKILLS",
+            "description": "making code ez-pz",
+            "remote_name": "EZ-Template",
             "slot": 2
         }
     }

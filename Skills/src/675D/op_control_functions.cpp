@@ -13,13 +13,15 @@ bool lift_timed_out = false;
 
 bool clamp_current_state = true;
 
-int conveyor_speed = 600;
+int conveyor_speed = 550;
 
 int lift_up_speed = 100;
 int lift_down_speed = 100;
 int lift_up_speed_slowed = 100;
 int lift_down_speed_slowed = 100;
 bool lift_task_running = false;
+
+bool blocker_is_down = false;
 
 void shift_key(){
   if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1) == true && master.get_digital(pros::E_CONTROLLER_DIGITAL_L2) == false){
@@ -170,5 +172,18 @@ void conveyor_control(){
   }
   else{
     conveyor.move_velocity(0);
+  }
+}
+
+void blocker_control(){
+  if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X)){
+    if(blocker_is_down == true){
+      blocker.set_value(true);
+      blocker_is_down = false;
+    }
+    else if(blocker_is_down == false){
+      blocker.set_value(false);
+      blocker_is_down = true;
+    }
   }
 }

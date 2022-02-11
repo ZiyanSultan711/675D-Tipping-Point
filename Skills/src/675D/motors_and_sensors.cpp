@@ -9,3 +9,5 @@ pros::ADIDigitalOut tilter_clamp('G', false);
 pros::ADIDigitalOut piston_clamp('H', true);
 
 pros::ADIDigitalIn limit_page_up ('D');
+
+pros::ADIDigitalOut blocker('C', true);

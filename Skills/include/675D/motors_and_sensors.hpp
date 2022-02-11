@@ -9,3 +9,5 @@ extern pros::ADIDigitalOut tilter_r;
 extern pros::ADIDigitalOut tilter_clamp;
 
 extern pros::ADIDigitalIn limit_page_up;
+
+extern pros::ADIDigitalOut blocker;

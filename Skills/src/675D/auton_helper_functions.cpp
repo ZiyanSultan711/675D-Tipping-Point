@@ -64,6 +64,23 @@ void tilter_up(){
   pros::Task tu(tu_task);
 }
 
+int bd_task(){
+  blocker.set_value(false);
+  return 1;
+}
+
+int bu_task(){
+  blocker.set_value(true);
+  return 1;
+}
+
+void blocker_down(){
+  pros::Task bd(bd_task);
+}
+void blocker_up(){
+  pros::Task bu(bu_task);
+}
+
 void start_lift_to(int pos, int speed){
   lift.move_absolute(-pos, speed);
 }

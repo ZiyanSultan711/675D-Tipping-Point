@@ -1,15 +1,16 @@
 #include "main.h"
 
 void two_mogo_match_loads(){
-  // chassis.set_pid_constants(&chassis.forward_drivePID, 0.48, 0, 1.8, 0); //0.45
-  // chassis.set_pid_constants(&chassis.backward_drivePID, 0.48, 0, 1.8, 0); //0.45
-  // chassis.set_pid_constants(&chassis.turnPID, 5, 0.003, 22, 15);
+  chassis.set_pid_constants(&chassis.forward_drivePID, 0.48, 0, 1.8, 0); //0.45
+  chassis.set_pid_constants(&chassis.backward_drivePID, 0.48, 0, 1.8, 0); //0.45
+  chassis.set_pid_constants(&chassis.turnPID, 5, 0.003, 22, 15);
 
   lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
   pros::Task start_timer(check_for_time);
 
   start_flipout();
+  blocker_down();
 
   chassis.set_drive_pid(40.1, 127); //fwd towards yellow mogo
   chassis.wait_drive();
@@ -19,10 +20,11 @@ void two_mogo_match_loads(){
 
   chassis.set_drive_pid(-40, 127); //drives bwd with mogo
   chassis.wait_until(-2);
-  start_lift_to(20, 50);
+  start_lift_to(30, 50);
 
   chassis.wait_until(-18);
   start_claw_open(); //drops off mogo in zone
+  blocker_up();
 
   chassis.wait_drive(); //continues driving bwd
 
@@ -39,7 +41,7 @@ void two_mogo_match_loads(){
   chassis.wait_drive();
 
   claw_close(); //grabs middle yellow mogo
-  start_lift_to(10, 40);
+  start_lift_to(20, 40);
 
   lift.set_brake_mode(MOTOR_BRAKE_COAST);
 
@@ -106,13 +108,11 @@ void left_auto(){
 }
 
 void fast_right_one_mogo(){
-  chassis.set_pid_constants(&chassis.forward_drivePID, 0.48, 0, 1.8, 0); //0.45
-  chassis.set_pid_constants(&chassis.backward_drivePID, 0.48, 0, 1.8, 0); //0.45
-  chassis.set_pid_constants(&chassis.turnPID, 5, 0.003, 22, 15);
 
   chassis.set_mode(ez::DISABLE);
   start_claw_open();
   tilter_down();
+  blocker_down();
 
   chassis.set_tank(127, 127);
   while(chassis.right_sensor() < 1980){
@@ -127,7 +127,7 @@ void fast_right_one_mogo(){
 
   lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
-  while(chassis.right_sensor() > 950){
+  while(chassis.right_sensor() > 890){
     wait(2);
   }
   chassis.set_tank(0, 0);
@@ -164,13 +164,11 @@ void fast_right_one_mogo(){
 }
 
 void fast_left_one_mogo(){
-  chassis.set_pid_constants(&chassis.forward_drivePID, 0.48, 0, 1.8, 0); //0.45
-  chassis.set_pid_constants(&chassis.backward_drivePID, 0.48, 0, 1.8, 0); //0.45
-  chassis.set_pid_constants(&chassis.turnPID, 5, 0.003, 22, 15);
 
   chassis.set_mode(ez::DISABLE);
   start_claw_open();
   tilter_down();
+  blocker_down();
 
   chassis.set_tank(127, 127);
   while(chassis.right_sensor() < 2150){
@@ -188,4 +186,106 @@ void fast_left_one_mogo(){
   }
   chassis.set_tank(0, 0);
   wait(200);
+}
+
+void mid_fake(){
+  chassis.set_pid_constants(&chassis.forward_drivePID, 0.48, 0, 1.8, 0); //0.45
+  chassis.set_pid_constants(&chassis.backward_drivePID, 0.48, 0, 1.8, 0); //0.45
+  chassis.set_pid_constants(&chassis.turnPID, 5, 0.003, 22, 15);
+
+  lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+
+  // pros::Task start_timer(check_for_time);
+
+  start_flipout();
+
+  chassis.set_turn_pid(-35, 80);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(49, 120);
+  chassis.wait_until(40);
+  chassis.set_max_speed(100);
+  chassis.wait_drive();
+
+  claw_close();
+  start_lift_to(20, 100);
+
+  chassis.set_drive_pid(-29, 90);
+  chassis.wait_drive();
+
+  chassis.set_turn_pid(-90, 70);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(-28, 70);
+
+  chassis.wait_until(-20);
+  chassis.set_max_speed(50);
+  start_lift_to(0, 100);
+  chassis.wait_drive();
+
+  tilter_up();
+  wait(200);
+
+  intake_for(3000, 500);
+
+
+}
+
+void right_awp(){
+  chassis.set_pid_constants(&chassis.forward_drivePID, 0.48, 0, 1.8, 0); //0.45
+  chassis.set_pid_constants(&chassis.backward_drivePID, 0.48, 0, 1.8, 0); //0.45
+  chassis.set_pid_constants(&chassis.turnPID, 5, 0.003, 22, 15);
+
+  lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+
+  tilter_down();
+
+  chassis.set_drive_pid(17.5, 80, true);
+  chassis.wait_drive();
+
+  chassis.set_turn_pid(-90, 80);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(-16, 55, true);
+  chassis.wait_drive();
+
+  tilter_up();
+  wait(100);
+
+  chassis.set_drive_pid(16.5, 80, true);
+  chassis.wait_drive();
+
+
+  chassis.set_turn_pid(90, 80);
+  chassis.wait_drive();
+
+  start_lift_to(400, 100);
+
+  chassis.set_drive_pid(-65, 80, true);
+
+  chassis.wait_until(-30);
+  start_intake(550);
+
+  chassis.wait_drive();
+
+  chassis.set_turn_pid(180, 80);
+  chassis.wait_drive();
+
+  stop_intake();
+
+  chassis.set_drive_pid(6, 80, true);
+  chassis.wait_drive();
+
+  lift_to(150, 100);
+  claw_open();
+
+  chassis.set_drive_pid(-6, 80, true);
+  chassis.wait_drive();
+
+  chassis.set_turn_pid(270, 80);
+  chassis.wait_drive();
+
+  start_lift_to(0, 100);
+  tilter_down();
+
 }
