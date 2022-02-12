@@ -434,22 +434,22 @@ void left_finesse(){
 
   start_flipout();
 
-  chassis.set_swing_pid(ez::LEFT_SWING, 60, 110);
+  chassis.set_swing_pid(ez::LEFT_SWING, 63, 110);
   chassis.wait_drive();
 
-  chassis.set_drive_pid(23, 110);
+  chassis.set_drive_pid(24.0, 80); // first swing
   chassis.wait_drive();
 
-  chassis.set_swing_pid(ez::RIGHT_SWING, 30, 110);
+  chassis.set_swing_pid(ez::RIGHT_SWING, 28, 90);
   chassis.wait_drive();
 
-  chassis.set_drive_pid(25, 90);
+  chassis.set_drive_pid(25, 80); // towards the goal
   chassis.wait_drive();
 
   claw_close();
   start_lift_to(20, 100);
 
-  chassis.set_drive_pid(-25, 100);
+  chassis.set_drive_pid(-27, 100); // back
 
   chassis.wait_until(-18);
   chassis.set_max_speed(65);
@@ -461,13 +461,13 @@ void left_finesse(){
   chassis.set_swing_pid(ez::RIGHT_SWING, 90, 110);
   chassis.wait_drive();
 
-  chassis.set_drive_pid(-15, 120);
+  chassis.set_drive_pid(-16.5, 120);
   chassis.wait_drive();
 
   chassis.set_turn_pid(3, 105);
   chassis.wait_drive();
 
-  chassis.set_drive_pid(48, 100);
+  chassis.set_drive_pid(50, 100);
 
   start_lift_to(0, 100);
 
