@@ -70,14 +70,14 @@ void initialize() {
   // Autonomous Selector using LLEMMU
   ez::as::auton_selector.add_autons({
     // Auton("prog skills", prog_skills),
-    // Auton("RIGHT 2 mogo, match load", two_mogo_match_loads),
-    // Auton("RIGHT hard code 1 mogo, match load", fast_right_one_mogo),
-    // Auton("LEFT hard code 1 mogo", fast_left_one_mogo),
-    // Auton("RIGHT mid fake", mid_fake),
-    // Auton("RIGHT awp", right_awp),
-    // Auton("LEFT awp + mid netrual", left_awp),
-    // Auton("LEFT ring + netrual", left_ring_and_yellow),
-    // Auton("LEFT ring + netrual steal", left_ring_and_yellow_steal),
+    Auton("RIGHT 2 mogo, match load", two_mogo_match_loads),
+    Auton("RIGHT hard code 1 mogo, match load", fast_right_one_mogo),
+    Auton("LEFT hard code 1 mogo", fast_left_one_mogo),
+    Auton("RIGHT mid fake", mid_fake),
+    Auton("RIGHT awp", right_awp),
+    Auton("LEFT awp + mid netrual", left_awp),
+    Auton("LEFT ring + netrual", left_ring_and_yellow),
+    Auton("LEFT ring + netrual steal", left_ring_and_yellow_steal),
     Auton("LEFT finesse two goals", left_finesse),
 
 
