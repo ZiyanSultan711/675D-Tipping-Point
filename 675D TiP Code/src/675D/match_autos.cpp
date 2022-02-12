@@ -415,7 +415,7 @@ void left_ring_and_yellow_steal(){
   chassis.set_turn_pid(-90, 70);
   chassis.wait_drive();
 
-  chassis.set_drive_pid(22, 80, true);
+  chassis.set_drive_pid(22, 75, true);
   chassis.wait_drive();
 
   claw_close();
@@ -467,8 +467,14 @@ void left_finesse(){
   chassis.set_turn_pid(3, 105);
   chassis.wait_drive();
 
-  chassis.set_drive_pid(48, 120);
+  chassis.set_drive_pid(48, 100);
+
   start_lift_to(0, 100);
+
+
+  chassis.wait_until(20);
+  chassis.set_max_speed(70);
+
   chassis.wait_drive();
 
   claw_close();
