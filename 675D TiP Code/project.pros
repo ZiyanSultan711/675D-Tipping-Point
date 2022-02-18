@@ -308,7 +308,7 @@
         "upload_options": {
             "compress_bin": true,
             "description": "making code ez-pz",
-            "remote_name": "EZ-Template",
+            "remote_name": "prog",
             "slot": 1
         }
     }

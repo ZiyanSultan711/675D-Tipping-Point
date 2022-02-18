@@ -1,5 +1,45 @@
 #include "main.h"
+void right_stick(){
+  blocker_down();
 
+  lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+
+  chassis.set_pid_constants(&chassis.forward_drivePID, 0.48, 0, 1.8, 0); //0.45
+  chassis.set_pid_constants(&chassis.backward_drivePID, 0.48, 0, 1.8, 0); //0.45
+
+  chassis.set_drive_pid(22, 127);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(-29, 127);
+  chassis.wait_drive();
+
+  start_claw_open();
+  blocker_up();
+
+  chassis.set_swing_pid(ez::RIGHT_SWING, -15, 80);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(12, 60);
+  chassis.wait_drive();
+
+  claw_close();
+  start_lift_to(20, 100);
+  tilter_down();
+  wait(200);
+
+  chassis.set_turn_pid(-115, 80);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(-10, 55);
+  chassis.wait_drive();
+
+  tilter_up();
+
+  intake_for(3000, 450);
+
+
+
+}
 void two_mogo_match_loads(){
   chassis.set_pid_constants(&chassis.forward_drivePID, 0.48, 0, 1.8, 0); //0.45
   chassis.set_pid_constants(&chassis.backward_drivePID, 0.48, 0, 1.8, 0); //0.45
@@ -10,7 +50,7 @@ void two_mogo_match_loads(){
   pros::Task start_timer(check_for_time);
 
   start_flipout();
-  blocker_down();
+  //blocker_down();
 
   chassis.set_drive_pid(40.1, 127); //fwd towards yellow mogo
   chassis.wait_drive();
@@ -24,7 +64,7 @@ void two_mogo_match_loads(){
 
   chassis.wait_until(-18);
   start_claw_open(); //drops off mogo in zone
-  blocker_up();
+  //blocker_up();
 
   chassis.wait_drive(); //continues driving bwd
 
@@ -59,7 +99,7 @@ void two_mogo_match_loads(){
 
   chassis.wait_drive();
 
-  chassis.set_drive_pid(-22, 60); //drives bwd into alliance mogo
+  chassis.set_drive_pid(-21, 50); //drives bwd into alliance mogo
   chassis.wait_drive();
 
   start_lift_to(520, -140); //lift comes up for match loads

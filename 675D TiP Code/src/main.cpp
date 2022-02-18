@@ -70,6 +70,7 @@ void initialize() {
   // Autonomous Selector using LLEMMU
   ez::as::auton_selector.add_autons({
     // Auton("prog skills", prog_skills),
+    Auton("RIGHT CANSTEALER",  right_stick),
     Auton("RIGHT 2 mogo, match load", two_mogo_match_loads),
     Auton("RIGHT hard code 1 mogo, match load", fast_right_one_mogo),
     Auton("LEFT hard code 1 mogo", fast_left_one_mogo),

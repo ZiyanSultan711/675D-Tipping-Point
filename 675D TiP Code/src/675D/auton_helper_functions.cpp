@@ -65,12 +65,12 @@ void tilter_up(){
 }
 
 int bd_task(){
-  blocker.set_value(false);
+  blocker.set_value(true);
   return 1;
 }
 
 int bu_task(){
-  blocker.set_value(true);
+  blocker.set_value(false);
   return 1;
 }
 
