@@ -1,6 +1,9 @@
 #include "api.h"
 
 void right_stick();
+void left_stick();
+
+void middle_rush();
 
 void two_mogo_match_loads();
 void left_auto();
