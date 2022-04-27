@@ -69,7 +69,7 @@ void initialize() {
 
   // Autonomous Selector using LLEMMU
   ez::as::auton_selector.add_autons({
-    // Auton("RIGHT CANSTEALER",  right_stick),
+    Auton("TESTING",  right_canstealer_onemogo_matchload),
 
     //Auton("Interference\n\nAfter driving forward, robot performs differently if interfered or not.", interfered_example),
   });
