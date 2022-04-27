@@ -5,18 +5,18 @@
 Drive chassis (
   // Left Chassis Ports (negative port will reverse it!)
   //   the first port is the sensored port (when trackers are not used!)
-  {-1, -14, -21}
+  {-13, -14, -15}
 
   // Right Chassis Ports (negative port will reverse it!)
   //   the first port is the sensored port (when trackers are not used!)
-  ,{8, 9, 15}
+  ,{17, 18, 20}
 
   // IMU Port
-  ,11
+  ,8
 
   // Wheel Diameter (Remember, 4" wheels are actually 4.125!)
   //    (or tracking wheel diameter)
-  ,4.125
+  ,2.75
 
   // Cartridge RPM
   //   (or tick per rotation if using tracking wheels)
@@ -26,7 +26,7 @@ Drive chassis (
   //    (or gear ratio of tracking wheel)
   // eg. if your drive is 84:36 where the 36t is powered, your RATIO would be 2.333.
   // eg. if your drive is 36:60 where the 60t is powered, your RATIO would be 0.6.
-  ,2.333
+  ,1.333
 
   // Uncomment if using tracking wheels
   /*
@@ -69,7 +69,6 @@ void initialize() {
 
   // Autonomous Selector using LLEMMU
   ez::as::auton_selector.add_autons({
-    // Auton("prog skills", prog_skills),
     Auton("RIGHT CANSTEALER",  right_stick),
     Auton("LEFT CANSTEALER", left_stick),
     Auton("MIDDLE RUSH", middle_rush),
@@ -82,6 +81,7 @@ void initialize() {
     Auton("LEFT ring + netrual", left_ring_and_yellow),
     Auton("LEFT ring + netrual steal", left_ring_and_yellow_steal),
     Auton("LEFT finesse two goals", left_finesse),
+    Auton("prog skills", prog_skills),
 
 
 
@@ -173,7 +173,7 @@ void opcontrol() {
     lift_control();
     clamp_control();
     conveyor_control();
-    blocker_control();
+    canstealer_control();
 
     pros::delay(ez::util::DELAY_TIME); // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
   }

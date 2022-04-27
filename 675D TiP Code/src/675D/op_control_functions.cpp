@@ -21,7 +21,7 @@ int lift_up_speed_slowed = 100;
 int lift_down_speed_slowed = 100;
 bool lift_task_running = false;
 
-bool blocker_is_down = false;
+bool canstealer_is_down = false;
 
 void shift_key(){
   if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1) == true && master.get_digital(pros::E_CONTROLLER_DIGITAL_L2) == false){
@@ -145,11 +145,13 @@ void clamp_control(){
     if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L2)){
       if(clamp_current_state == true){
         piston_clamp.set_value(false);
+        piston_clamp_1.set_value(false);
         master.rumble(".");
         clamp_current_state = false;
       }
       else if(clamp_current_state == false){
         piston_clamp.set_value(true);
+        piston_clamp_1.set_value(true);
         master.rumble(".");
         clamp_current_state = true;
       }
@@ -175,15 +177,15 @@ void conveyor_control(){
   }
 }
 
-void blocker_control(){
+void canstealer_control(){
   if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X)){
-    if(blocker_is_down == true){
-      blocker.set_value(true);
-      blocker_is_down = false;
+    if(canstealer_is_down == true){
+      canstealer_up();
+      canstealer_is_down = false;
     }
-    else if(blocker_is_down == false){
-      blocker.set_value(false);
-      blocker_is_down = true;
+    else if(canstealer_is_down == false){
+      canstealer_down();
+      canstealer_is_down = true;
     }
   }
 }

@@ -3,12 +3,14 @@
 bool is_time_up = false;
 
 void claw_open(){
-  piston_clamp.set_value(true);
+  piston_clamp.set_value(false);
+  piston_clamp_1.set_value(false);
   clamp_current_state = true;
 }
 
 void claw_close(){
-  piston_clamp.set_value(false);
+  piston_clamp.set_value(true);
+  piston_clamp_1.set_value(true);
   clamp_current_state = false;
 }
 
@@ -33,8 +35,7 @@ void start_claw_close(){
 }
 
 int td_task(){
-  tilter_l.set_value(true);
-  tilter_r.set_value(true);
+  tilter.set_value(true);
   mogo_is_down = true;
 
   wait(500);
@@ -49,8 +50,7 @@ int tu_task(){
   mogo_clamp_closed = true;
 
 
-  tilter_l.set_value(false);
-  tilter_r.set_value(false);
+  tilter.set_value(false);
   mogo_is_down = false;
 
   return 1;
@@ -64,21 +64,21 @@ void tilter_up(){
   pros::Task tu(tu_task);
 }
 
-int bd_task(){
-  blocker.set_value(true);
+int cd_task(){
+  canstealer.set_value(true);
   return 1;
 }
 
-int bu_task(){
-  blocker.set_value(false);
+int cu_task(){
+  canstealer.set_value(false);
   return 1;
 }
 
-void blocker_down(){
-  pros::Task bd(bd_task);
+void canstealer_down(){
+  pros::Task cd(cd_task);
 }
-void blocker_up(){
-  pros::Task bu(bu_task);
+void canstealer_up(){
+  pros::Task cu(cu_task);
 }
 
 void start_lift_to(int pos, int speed){

@@ -28,4 +28,4 @@ void mogo_control();
 void lift_control();
 void clamp_control();
 void conveyor_control();
-void blocker_control();
+void canstealer_control();

@@ -1,64 +1,50 @@
 #include "main.h"
+///////////////////////////////////////////// worlds autos //////////////////////////////////////////////
+
+void right_canstealer_onemogo_matchload(){
+
+}
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 void right_stick(){
-  blocker_down();
-
-  lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-
-  chassis.set_pid_constants(&chassis.forward_drivePID, 0.48, 0, 1.8, 0); //0.45
-  chassis.set_pid_constants(&chassis.backward_drivePID, 0.48, 0, 1.8, 0); //0.45
-
-  chassis.set_drive_pid(22.7, 127);
-  chassis.wait_drive();
-
-  chassis.set_drive_pid(-29.5, 127);
-  chassis.wait_drive();
-
   start_claw_open();
-  blocker_up();
+  chassis.set_drive_pid(50, 127);
+  chassis.wait_until(14);
 
-  chassis.set_swing_pid(ez::RIGHT_SWING, -15, 80);
+  start_claw_close();
+
+  chassis.set_mode(ez::DISABLE);
+  chassis.set_mode(ez::DRIVE);
+
+  chassis.set_drive_pid(-30, 127);
   chassis.wait_drive();
-
-  chassis.set_drive_pid(12, 60);
-  chassis.wait_drive();
-
-  claw_close();
-  start_lift_to(20, 100);
-  tilter_down();
-  wait(200);
-
-  chassis.set_turn_pid(-115, 80);
-  chassis.wait_drive();
-
-  chassis.set_drive_pid(-11, 55);
-  start_lift_to(0, 100);
-  chassis.wait_drive();
-
-  tilter_up();
-  wait(300);
-
-  // intake_for(3000, 450);
-
-
 
 }
 
 void left_stick(){
-  blocker_down();
+  //blocker_down();
 
   lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
   chassis.set_pid_constants(&chassis.forward_drivePID, 0.48, 0, 1.8, 0); //0.45
   chassis.set_pid_constants(&chassis.backward_drivePID, 0.48, 0, 1.8, 0); //0.45
 
-  chassis.set_drive_pid(24, 127);
+  chassis.set_drive_pid(24.5, 127);
   chassis.wait_drive();
 
   chassis.set_drive_pid(-30, 127);
   chassis.wait_drive();
 
   start_claw_open();
-  blocker_up();
+  //blocker_up();
 }
 
 void middle_rush(){
@@ -192,7 +178,7 @@ void fast_right_one_mogo(){
   chassis.set_mode(ez::DISABLE);
   start_claw_open();
   tilter_down();
-  blocker_down();
+  // blocker_down();
 
   chassis.set_tank(127, 127);
   while(chassis.right_sensor() < 1980){
@@ -248,7 +234,7 @@ void fast_left_one_mogo(){
   chassis.set_mode(ez::DISABLE);
   start_claw_open();
   tilter_down();
-  blocker_down();
+  // blocker_down();
 
   chassis.set_tank(127, 127);
   while(chassis.right_sensor() < 2150){

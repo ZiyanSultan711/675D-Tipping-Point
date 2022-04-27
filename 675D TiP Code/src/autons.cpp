@@ -14,8 +14,6 @@ const int DRIVE_SPEED = 122; // This is 110/127 (around 87% of max speed).  We d
 const int TURN_SPEED  = 95;
 const int SWING_SPEED = 90;
 
-
-
 ///
 // Constants
 ///
@@ -146,7 +144,7 @@ void prog_skills(){
   chassis.set_drive_pid(23, 80, true); //drives fwd after grabbing mogo
   chassis.wait_drive();
 
-  chassis.set_turn_pid(-44, 60); //turns to face platform
+  chassis.set_turn_pid(-43, 60); //turns to face platform
   chassis.wait_drive();
 
   start_lift_to(580, 100);
@@ -195,7 +193,7 @@ void prog_skills(){
 
   lift_to(492, 100);
 
-  chassis.set_turn_pid(-25, 65);
+  chassis.set_turn_pid(-24, 65);
   chassis.wait_drive();
 
   chassis.set_drive_pid(19, 80, true);
@@ -238,7 +236,7 @@ void prog_skills(){
   chassis.set_drive_pid(-60, 90, true);
   chassis.wait_drive();
 
-  chassis.set_turn_pid(-141, 70);
+  chassis.set_turn_pid(-142, 70);
   chassis.wait_until(-100);
   chassis.set_max_speed(60);
 
@@ -306,7 +304,7 @@ void prog_skills(){
   // alliance goal picked up with tilter
 
 
-  chassis.set_drive_pid(17, 80);
+  chassis.set_drive_pid(16, 80);
   chassis.wait_drive();
 
   chassis.set_turn_pid(180, 90);
@@ -326,7 +324,7 @@ void prog_skills(){
 
   chassis.wait_drive();
 
-  chassis.set_turn_pid(140, 60);
+  chassis.set_turn_pid(143, 60);
   chassis.wait_drive();
 
   start_lift_to(480, 100);
@@ -364,7 +362,7 @@ void prog_skills(){
 
   lift_to(485, 100);
 
-  chassis.set_turn_pid(-217, 55);
+  chassis.set_turn_pid(-209, 55);
   chassis.wait_drive();
 
   chassis.set_drive_pid(24, 60);
@@ -381,7 +379,7 @@ void prog_skills(){
   chassis.set_turn_pid(-270, 90);
   chassis.wait_drive();
 
-  chassis.set_drive_pid(-36, 110, true);
+  chassis.set_drive_pid(-38, 110, true);
   start_lift_to(0, 100);
 
   chassis.wait_drive();
@@ -408,7 +406,7 @@ void prog_skills(){
   chassis.wait_drive();
 
 
-  chassis.set_turn_pid(-331, 70);
+  chassis.set_turn_pid(-319, 70);
   chassis.wait_until(-100);
   chassis.set_max_speed(60);
 
@@ -417,7 +415,7 @@ void prog_skills(){
   start_lift_to(485, 100);
   wait(400);
 
-  chassis.set_drive_pid(32, 70, true);
+  chassis.set_drive_pid(32, 64, true);
   chassis.wait_until(20);
   chassis.set_max_speed(50);
   chassis.wait_drive();
@@ -430,6 +428,5 @@ void prog_skills(){
 
   chassis.set_drive_pid(-15, 10, true);
   chassis.wait_drive();
-
 
 }

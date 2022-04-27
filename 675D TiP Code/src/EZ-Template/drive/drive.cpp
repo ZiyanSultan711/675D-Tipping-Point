@@ -262,28 +262,28 @@ void Drive::imu_loading_display(int iter) {
   // Boarder
   int boarder = 50;
 
-  // Create the boarder
-  pros::screen::set_pen(COLOR_WHITE);
-  for (int i = 1; i < 3; i++) {
-    pros::screen::draw_rect(boarder + i, boarder + i, 480 - boarder - i, 240 - boarder - i);
-  }
-
-  // While IMU is loading
-  if (iter < 2000) {
-    static int last_x1 = boarder;
-    pros::screen::set_pen(0x00FF6EC7);  // EZ Pink
-    int x1 = (iter * ((480 - (boarder * 2)) / 2000.0)) + boarder;
-    pros::screen::fill_rect(last_x1, boarder, x1, 240 - boarder);
-    last_x1 = x1;
-  }
-  // Failsafe time
-  else {
-    static int last_x1 = boarder;
-    pros::screen::set_pen(COLOR_RED);
-    int x1 = ((iter - 2000) * ((480 - (boarder * 2)) / 1000.0)) + boarder;
-    pros::screen::fill_rect(last_x1, boarder, x1, 240 - boarder);
-    last_x1 = x1;
-  }
+  // // Create the boarder
+  // pros::screen::set_pen(COLOR_WHITE);
+  // for (int i = 1; i < 3; i++) {
+  //   pros::screen::draw_rect(boarder + i, boarder + i, 480 - boarder - i, 240 - boarder - i);
+  // }
+  //
+  // // While IMU is loading
+  // if (iter < 2000) {
+  //   static int last_x1 = boarder;
+  //   pros::screen::set_pen(0x00FF6EC7);  // EZ Pink
+  //   int x1 = (iter * ((480 - (boarder * 2)) / 2000.0)) + boarder;
+  //   pros::screen::fill_rect(last_x1, boarder, x1, 240 - boarder);
+  //   last_x1 = x1;
+  // }
+  // // Failsafe time
+  // else {
+  //   static int last_x1 = boarder;
+  //   pros::screen::set_pen(COLOR_RED);
+  //   int x1 = ((iter - 2000) * ((480 - (boarder * 2)) / 1000.0)) + boarder;
+  //   pros::screen::fill_rect(last_x1, boarder, x1, 240 - boarder);
+  //   last_x1 = x1;
+  // }
 }
 
 bool Drive::imu_calibrate(bool run_loading_animation) {
