@@ -1,5 +1,6 @@
 #include "main.h"
 ///////////////////////////////////////////// worlds autos //////////////////////////////////////////////
+// declare functions in match_autos.hpp
 
 void right_canstealer_onemogo_matchload(){
 
