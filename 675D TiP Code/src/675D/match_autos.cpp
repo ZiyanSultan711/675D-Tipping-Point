@@ -4,11 +4,253 @@
 
 void right_canstealer_onemogo_matchload(){
 
+  chassis.set_drive_pid(50, 127);
+  chassis.wait_until(8);
+  canstealer_down();
+  chassis.wait_until(18.8);
+
+  chassis.set_mode(ez::DISABLE);
+  chassis.set_mode(ez::DRIVE);
+
+  chassis.set_drive_pid(-31, 127);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(2, 50);
+  chassis.wait_drive();
+
+  wall_exit_condition();
+
+  chassis.set_drive_pid(-11, 90);
+  chassis.wait_drive();
+
+  chassis.reset_drive_sensor();
+  chassis.reset_gyro();
+
+  chassis.set_drive_pid(2, 80, true);
+  canstealer_up();
+  chassis.wait_drive();
+
+  start_claw_open();
+
+  chassis.set_turn_pid(12 , 90);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(8, 100);
+  chassis.wait_drive();
+
+  claw_close();
+
+  lift_to(80, 100);
+
+  chassis.set_turn_pid(0 , 90);
+  chassis.wait_drive();
+
+  tilter_down();
+
+  chassis.set_drive_pid(19, 80);
+  chassis.wait_drive();
+
+
+  chassis.set_turn_pid(-90 , 80);
+  chassis.wait_drive();
+
+  wall_exit_condition();
+
+  chassis.set_drive_pid(-22, 80);
+
+  chassis.wait_until(-18);
+  chassis.set_max_speed(60);
+
+  chassis.wait_drive();
+
+  wait(200);
+  tilter_up();
+  wait(300);
+
+  chassis.set_drive_pid(4, 100);
+  start_lift_to(200, 100);
+  chassis.wait_drive();
+
+  chassis.set_turn_pid(0 , 80);
+  chassis.wait_drive();
+
+  start_intake(600);
+  wait(300);
+
+  chassis.set_drive_pid(28, 40);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(-40, 127);
+  start_lift_to(20, 60);
+
+  chassis.wait_until(-35);
+  tilter_down();
+
+  chassis.wait_drive();
+
+  stop_intake();
 }
 
+void right_canstealer_AWP(){
+  chassis.set_drive_pid(50, 127);
+  chassis.wait_until(8);
+  canstealer_down();
+  chassis.wait_until(18.8);
+
+  chassis.set_mode(ez::DISABLE);
+  chassis.set_mode(ez::DRIVE);
+
+  chassis.set_drive_pid(-31, 127);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(2, 50);
+  chassis.wait_drive();
+
+  wall_exit_condition();
+
+  chassis.set_drive_pid(-11, 90);
+  chassis.wait_drive();
+
+  chassis.reset_drive_sensor();
+  chassis.reset_gyro();
+
+  chassis.set_drive_pid(2, 80, true);
+  canstealer_up();
+  chassis.wait_drive();
+
+  start_claw_open();
+
+  chassis.set_turn_pid(12 , 90);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(8, 100);
+  chassis.wait_drive();
+
+  claw_close();
+
+  lift_to(80, 100);
+
+  chassis.set_turn_pid(0 , 90);
+  chassis.wait_drive();
+
+  tilter_down();
+
+  chassis.set_drive_pid(19, 80);
+  chassis.wait_drive();
 
 
+  chassis.set_turn_pid(-90 , 80);
+  chassis.wait_drive();
 
+  wall_exit_condition();
+
+  chassis.set_drive_pid(-22, 80);
+
+  chassis.wait_until(-18);
+  chassis.set_max_speed(60);
+
+  chassis.wait_drive();
+
+  wait(200);
+  tilter_up();
+  wait(300);
+
+  chassis.set_drive_pid(100, 127);
+  start_lift_to(100, 100);
+
+  chassis.wait_until(5);
+  start_intake(600);
+
+  chassis.wait_until(55);
+  tilter_down();
+  stop_intake();
+
+  chassis.wait_drive();
+
+  chassis.set_turn_pid(0 , 80);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(-27, 100);
+  chassis.wait_drive();
+
+  chassis.set_turn_pid(-90 , 80);
+  chassis.wait_drive();
+
+  start_lift_to(350, 80);
+
+  chassis.set_drive_pid(-8, 80);
+  chassis.wait_drive();
+
+  tilter_up();
+  wait(100);
+
+  start_intake(600);
+
+  chassis.set_drive_pid(20, 40);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(-10, 100);
+  start_lift_to(20, 100);
+  tilter_down();
+  stop_intake();
+
+  chassis.wait_drive();
+
+
+}
+
+void tall_rush_left_alliance_goal(){
+  chassis.set_drive_pid(50, 127);
+  chassis.wait_until(10);
+  canstealer_down();
+  chassis.wait_until(26);
+
+  chassis.set_mode(ez::DISABLE);
+  chassis.set_mode(ez::DRIVE);
+
+  chassis.set_drive_pid(-29, 127);
+  chassis.wait_drive();
+}
+
+void left_pile_ring(){
+  chassis.set_drive_pid(50, 127);
+  chassis.wait_until(8);
+  canstealer_down();
+  chassis.wait_until(18.8);
+
+  chassis.set_mode(ez::DISABLE);
+  chassis.set_mode(ez::DRIVE);
+
+  chassis.set_drive_pid(-31, 127);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(2, 50);
+  chassis.wait_drive();
+
+  wall_exit_condition();
+
+  chassis.set_drive_pid(-11, 90);
+  chassis.wait_drive();
+
+  chassis.reset_drive_sensor();
+  chassis.reset_gyro();
+
+  chassis.set_drive_pid(2, 80, true);
+  canstealer_up();
+  chassis.wait_drive();
+
+  start_claw_open();
+
+  chassis.set_turn_pid(12 , 90);
+  chassis.wait_drive();
+
+  chassis.set_drive_pid(8, 100);
+  chassis.wait_drive();
+
+  claw_close();
+
+  lift_to(80, 100);
+}
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
