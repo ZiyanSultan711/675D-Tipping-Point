@@ -2,17 +2,24 @@
 ///////////////////////////////////////////// worlds autos //////////////////////////////////////////////
 // declare functions in match_autos.hpp
 
+
+// Helper functions
+
+void cansteal(float waitnum) {
+  chassis.set_drive_pid(50, 127); // drive forward 50
+  chassis.wait_until(waitnum); // wait till 8.1
+  canstealer_down(); // trigger canstealer
+  chassis.wait_until(18.8); // move forward until 18.8
+}
+
 void right_canstealer_onemogo_matchload(){
 
-  chassis.set_drive_pid(50, 127);
-  chassis.wait_until(8);
-  canstealer_down();
-  chassis.wait_until(18.8);
+  cansteal(8.1);
 
   chassis.set_mode(ez::DISABLE);
   chassis.set_mode(ez::DRIVE);
 
-  chassis.set_drive_pid(-31, 127);
+  chassis.set_drive_pid(-31, 127); // retreat
   chassis.wait_drive();
 
   chassis.set_drive_pid(2, 50);
@@ -32,7 +39,7 @@ void right_canstealer_onemogo_matchload(){
 
   start_claw_open();
 
-  chassis.set_turn_pid(12 , 90);
+  chassis.set_turn_pid(12, 90);
   chassis.wait_drive();
 
   chassis.set_drive_pid(8, 100);
@@ -67,7 +74,7 @@ void right_canstealer_onemogo_matchload(){
   tilter_up();
   wait(300);
 
-  chassis.set_drive_pid(4, 100);
+  chassis.set_drive_pid(8, 100);
   start_lift_to(200, 100);
   chassis.wait_drive();
 
@@ -92,10 +99,7 @@ void right_canstealer_onemogo_matchload(){
 }
 
 void right_canstealer_AWP(){
-  chassis.set_drive_pid(50, 127);
-  chassis.wait_until(8);
-  canstealer_down();
-  chassis.wait_until(18.8);
+  cansteal(8);
 
   chassis.set_mode(ez::DISABLE);
   chassis.set_mode(ez::DRIVE);
@@ -213,10 +217,7 @@ void tall_rush_left_alliance_goal(){
 }
 
 void left_pile_ring(){
-  chassis.set_drive_pid(50, 127);
-  chassis.wait_until(8);
-  canstealer_down();
-  chassis.wait_until(18.8);
+  cansteal(8);
 
   chassis.set_mode(ez::DISABLE);
   chassis.set_mode(ez::DRIVE);
