@@ -69,7 +69,12 @@ void initialize() {
 
   // Autonomous Selector using LLEMMU
   ez::as::auton_selector.add_autons({
-    Auton("TESTING",  right_canstealer_onemogo_matchload),
+    Auton("right auto fielding rings",  right_canstealer_field),
+    Auton("right awp",  right_canstealer_AWP),
+    Auton("tall goal left alliance goal",  tall_rush_left_alliance_goal),
+    Auton("left match load",  left_pile_ring),
+    Auton("chaos",  chaos),
+    Auton("mid fake",  mid_fake),
 
     //Auton("Interference\n\nAfter driving forward, robot performs differently if interfered or not.", interfered_example),
   });
